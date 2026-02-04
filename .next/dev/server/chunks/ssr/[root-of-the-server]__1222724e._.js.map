@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///Users/tsooj/Documents/GitHub/bodonSystemWeb/app/page.tsx"],"sourcesContent":["export default function Home() {\n  const [isMenuOpen, setIsMenuOpen] = useState(false);\n\n  const handleMenuToggle = () => {\n    setIsMenuOpen((prev) => !prev);\n  };\n\n  return (\n    <div className=\"text-foreground z-10\">\n      <div>\n        <Scene3D />\n      </div>\n      <main\n        className={`main-content h-screen w-full snap-mandatory snap-y overflow-y-auto scroll-smooth pt-20 ${isMenuOpen ? \"translate-x-[-260px]\" : \"\"}`}\n      >\n        <ScrollStop />\n      </main>\n      <StaggeredMenu\n        isFixed={true}\n        onMenuOpen={() => setIsMenuOpen(true)}\n        onMenuClose={() => setIsMenuOpen(false)}\n      />\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,MAAM,CAAC,YAAY,cAAc,GAAG,SAAS;IAE7C,MAAM,mBAAmB;QACvB,cAAc,CAAC,OAAS,CAAC;IAC3B;IAEA,qBACE,8OAAC;QAAI,WAAU;;0BACb,8OAAC;0BACC,cAAA,8OAAC;;;;;;;;;;0BAEH,8OAAC;gBACC,WAAW,CAAC,uFAAuF,EAAE,aAAa,yBAAyB,IAAI;0BAE/I,cAAA,8OAAC;;;;;;;;;;0BAEH,8OAAC;gBACC,SAAS;gBACT,YAAY,IAAM,cAAc;gBAChC,aAAa,IAAM,cAAc;;;;;;;;;;;;AAIzC"}}]
-}

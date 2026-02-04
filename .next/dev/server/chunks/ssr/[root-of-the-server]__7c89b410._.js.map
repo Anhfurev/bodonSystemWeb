@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///Users/tsooj/Documents/GitHub/bodonSystemWeb/app/about/page.tsx"],"sourcesContent":["import React from \"react\";\n\nconst page = () => {\n  return <div>page</div>;\n};\n\nexport default page;\n"],"names":[],"mappings":";;;;;;AAEA,MAAM,OAAO;IACX,qBAAO,8OAAC;kBAAI;;;;;;AACd;uCAEe"}}]
-}
