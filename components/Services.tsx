@@ -1,0 +1,102 @@
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { Code2, Cloud, Smartphone, Shield } from "lucide-react";
+
+const services = [
+  {
+    icon: Code2,
+    title: "Web Development",
+    description:
+      "Building custom websites and apps with modern tools and good practices.",
+  },
+  {
+    icon: Cloud,
+    title: "Cloud Solutions",
+    description:
+      "Reliable and scalable cloud services to support your business needs.",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile Apps",
+    description:
+      "Creating mobile apps that work well on all devices and are easy to use.",
+  },
+  {
+    icon: Shield,
+    title: "Security & QA",
+    description:
+      "Testing and security to keep your data safe and your systems running smoothly.",
+  },
+];
+
+export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section
+      style={{
+        transform: `translateX(${isMenuOpen ? "-0%" : "0"})`,
+        width: `${isMenuOpen ? "70%" : "100%"}`,
+        transition: "transform 0.5s ease-in-out, width 0.5s ease-in-out",
+      }}
+      id="services"
+      className="py-32 md:py-48 px-6 bg-muted/30 h-screen transition-transform duration-500"
+      ref={ref}
+    >
+      <div className="max-w-6xl mx-auto mt-[-120]">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-20"
+        >
+          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6">
+            Services
+          </p>
+          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-foreground">
+            What we <span className="italic">do</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {services.map((service, i) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{
+                duration: 0.8,
+                delay: 0.1 * i,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="group relative p-8 md:p-12 bg-background border border-border/50 rounded-2xl hover:border-foreground/20 transition-all duration-500"
+            >
+              <div className="flex items-start gap-6">
+                <div className="p-3 rounded-xl bg-muted group-hover:bg-foreground group-hover:text-background transition-all duration-500">
+                  <service.icon className="h-6 w-6" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-light text-foreground mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
+              <motion.div
+                className="absolute bottom-8 right-8 text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors duration-500"
+                whileHover={{ x: 5 }}
+              >
+                <span className="text-sm font-mono">0{i + 1}</span>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
