@@ -49,7 +49,7 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       style={{
         transform: `translateX(${isMenuOpen ? "-0%" : "0"})`,
-        width: `${isMenuOpen ? "70.3%" : "100%"}`,
+        width: `${isMenuOpen ? "68.9%" : "100%"}`,
         transition: "transform 0.5s ease-in-out, width 0.5s ease-in-out",
       }}
       id="services"

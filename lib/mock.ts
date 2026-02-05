@@ -3,6 +3,7 @@ export const menuItems = [
   { label: "About", ariaLabel: "Learn about us", link: "#about" },
   { label: "Services", ariaLabel: "View our services", link: "#services" },
   { label: "Contact", ariaLabel: "Get in touch", link: "#contact" },
+  { label: "Product", ariaLabel: "View our products", link: "#product" },
 ];
 
 export const socialItems = [

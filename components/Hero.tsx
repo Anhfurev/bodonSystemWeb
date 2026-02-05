@@ -14,7 +14,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
       id="home"
       style={{
         transform: `translateX(${isMenuOpen ? "-0%" : "0"})`,
-        width: `${isMenuOpen ? "70%" : "100%"}`,
+        width: `${isMenuOpen ? "69%" : "100%"}`,
         transition: "transform 0.5s ease-in-out, width 0.5s ease-in-out",
       }}
       className="min-h-screen snap-start w-full pt-20 flex-col items-center  flex justify-center px-6"

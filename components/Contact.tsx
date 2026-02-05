@@ -48,7 +48,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       style={{
         transform: `translateX(${isMenuOpen ? "-0%" : "0"})`,
-        width: `${isMenuOpen ? "70.3%" : "100%"}`,
+        width: `${isMenuOpen ? "69%" : "100%"}`,
         transition: "transform 0.5s ease-in-out, width 0.5s ease-in-out",
       }}
       id="contact"
@@ -63,7 +63,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
           className="text-center mb-16"
         >
           <AnimatePresence mode="wait">
-            <motion.p
+            <motion.div
               key={lang}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -71,10 +71,10 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
               transition={{ duration: 0.3, ease: "easeOut" }}
               className=""
             >
-              <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6">
+              <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6">
                 {lang === "en" ? "Contact" : "Холбогдох"}
-              </p>
-              <h2 className="text-4xl md:text-5xl font-light tracking-tight text-foreground">
+              </span>
+              <h2 className="text-4xl md:text-5xl mt-4 font-light tracking-tight text-foreground">
                 {lang === "en" ? "Let's work" : "Хамдтаа"}
 
                 <span className="italic">
@@ -86,7 +86,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                   ? "Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as possible."
                   : "Төслийн санаа байна уу? Бид таныг сонсохыг хүсэж байна. Мессежээ илгээхэд бид аль болох хурдан хариу өгнө."}
               </p>
-            </motion.p>
+            </motion.div>
           </AnimatePresence>
         </motion.div>
 
@@ -105,7 +105,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
               className="text-center mb-16"
             >
               <AnimatePresence mode="wait">
-                <motion.p
+                <motion.div
                   key={lang}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -124,15 +124,15 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                       id="name"
                       name="name"
                       placeholder={`${lang === "en" ? "Your name" : "Таны нэр"}`}
-                      className="rounded-xl border-border/50 bg-background focus:border-foreground/50 transition-colors h-12"
+                      className="rounded-xl border-border/50 bg-background/30 focus:border-foreground/50 transition-colors h-12"
                       required
                     />
                   </div>
-                </motion.p>
+                </motion.div>
               </AnimatePresence>
             </motion.div>
             <AnimatePresence mode="wait">
-              <motion.p
+              <motion.div
                 key={lang}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -152,15 +152,15 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                     id="email"
                     type="email"
                     placeholder={`${lang === "en" ? "your@email.com" : "Нэр@gmail.com"}`}
-                    className="rounded-xl border-border/50 bg-background focus:border-foreground/50 transition-colors h-12"
+                    className="rounded-xl border-border/50 bg-background/30 focus:border-foreground/50 transition-colors h-12"
                     required
                   />
                 </div>
-              </motion.p>
+              </motion.div>
             </AnimatePresence>
           </div>
           <AnimatePresence mode="wait">
-            <motion.p
+            <motion.div
               key={lang}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -179,14 +179,14 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                   name="subject"
                   id="subject"
                   placeholder={`${lang === "en" ? "How can we help?" : "Таньд юугаар туслах вэ?"}`}
-                  className="rounded-xl border-border/50 bg-background focus:border-foreground/50 transition-colors h-12"
+                  className="rounded-xl border-border/50 bg-background/30 focus:border-foreground/50 transition-colors h-12"
                   required
                 />
               </div>
-            </motion.p>
+            </motion.div>
           </AnimatePresence>
           <AnimatePresence mode="wait">
-            <motion.p
+            <motion.div
               key={lang}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -206,11 +206,11 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                   id="message"
                   placeholder={`${lang === "en" ? "Tell us about your project..." : "Төслийнхөө дэлгэрэнгүйг бичнэ үү..."}`}
                   rows={6}
-                  className="rounded-xl border-border/50 bg-background focus:border-foreground/50 transition-colors resize-none"
+                  className="rounded-xl border-border/50 bg-background/30 focus:border-foreground/50 transition-colors resize-none"
                   required
                 />
               </div>
-            </motion.p>
+            </motion.div>
           </AnimatePresence>
 
           <motion.div

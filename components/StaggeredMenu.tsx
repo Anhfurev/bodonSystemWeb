@@ -785,7 +785,7 @@ color: ${isDark ? "black" : "white"} !important;
   position: absolute;
   top: 0;
   right: 0;
-  width: clamp(220px, 35vw, 380px);
+  width: clamp(220px, 35vw, 400px);
   height: 100%;
   background:${isDark ? "black" : "#e4e4e5"} !important;
   display: flex;
@@ -809,7 +809,7 @@ border:0
   top: 0;
   right: 0;
   bottom: 0;
-  width: clamp(260px, 35vw, 380px);
+  width: clamp(260px, 35vw, 400px);
   pointer-events: none;
   z-index: 5;
 }
