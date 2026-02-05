@@ -78,7 +78,7 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
               <h2 className="text-4xl md:text-5xl font-light mt-6 tracking-tight mb-0 text-foreground">
                 {lang === "en" ? "What we" : "Бид юу"}
                 <span className="italic">
-                  {lang === "en" ? "Do" : " Хийдэг вэ?"}
+                  {lang === "en" ? " Do" : " Хийдэг вэ?"}
                 </span>
               </h2>
             </motion.div>
