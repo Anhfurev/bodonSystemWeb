@@ -1,4 +1,6 @@
 "use client";
+
+import LightRays from "@/components/LightRays";
 import { useMenuContext } from "@/components/MenuContext";
 import Scene3D from "@/components/Scene3D";
 import { ScrollStop } from "@/components/ScrollStop";

@@ -6,7 +6,10 @@ export const menuItems = [
 ];
 
 export const socialItems = [
-  { label: "Twitter", link: "https://twitter.com" },
-  { label: "GitHub", link: "https://github.com" },
-  { label: "LinkedIn", link: "https://linkedin.com" },
+  { label: "Gmail", link: "https:anhfurev@gmail.com" },
+  { label: "GitHub", link: "https://github.com/anhfurev" },
+  {
+    label: "LinkedIn",
+    link: "https:linkedin.com/in/ankhfurev-munkhtsetseg-8854a2341",
+  },
 ];

@@ -4,10 +4,14 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from "next/font/google";
 import StaggeredMenu from "@/components/StaggeredMenu";
 import "./globals.css";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import React from "react";
 import { MenuProvider } from "@/components/MenuContext";
 import { socialItems } from "@/lib/mock";
 import { menuItems } from "@/lib/mock";
+import { DarkProvider } from "@/components/DarkContext";
+import { Languages } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +35,19 @@ export default function RootLayout({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showMenuProvider, setShowMenuProvider] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+  const [textColor, setTextColor] = useState("#000");
+  const [textColorSc, setTextColorSc] = useState("#000");
+  const [lang, setLang] = useState<"en" | "mn">("en");
+  function isItDark(dark: boolean) {
+    setIsDark(dark);
+    setTextColor(dark ? "#000" : "#caccce");
+    setTextColorSc(dark ? "#caccce" : "#000");
+  }
+  function Changelanguage() {
+    setLang(lang === "en" ? "mn" : "en");
+  }
+  console.log("Language in RootLayout:", lang);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -45,27 +62,42 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
         {showMenuProvider && (
-          <MenuProvider value={{ isMenuOpen, setIsMenuOpen }}>
-            <div>
-              <StaggeredMenu
-                position="right"
-                items={menuItems}
-                socialItems={socialItems}
-                displaySocials={true}
-                displayItemNumbering={true}
-                menuButtonColor="#000 dark:#fff"
-                openMenuButtonColor="#000 dark:#fff"
-                changeMenuColorOnOpen={true}
-                colors={["#fff", "#000"]}
-                logoUrl="/BODON-black.png"
-                accentColor="#background"
-                isFixed={true}
-                onMenuOpen={() => setIsMenuOpen(true)}
-                onMenuClose={() => setIsMenuOpen(false)}
-              />
-            </div>
-            <div className="content-wrapper">{children}</div>
-          </MenuProvider>
+          <DarkProvider lang={lang} isDark={isDark}>
+            <MenuProvider value={{ isMenuOpen, setIsMenuOpen }}>
+              <div className="flex">
+                <AnimatedThemeToggler
+                  isItDark={isItDark}
+                  className="z-10 fixed right-28 top-10"
+                  color="#000"
+                />
+                <Button
+                  onClick={Changelanguage}
+                  className="z-10 fixed right-36 top-8.5"
+                >
+                  <Languages size={40} strokeWidth={1.75} />
+                </Button>
+
+                <StaggeredMenu
+                  isDark={isDark}
+                  position="right"
+                  items={menuItems}
+                  socialItems={socialItems}
+                  displaySocials={true}
+                  displayItemNumbering={true}
+                  menuButtonColor="foreground"
+                  openMenuButtonColor="#000 dark:#fff"
+                  changeMenuColorOnOpen={true}
+                  colors={[`${textColor}`, `${textColorSc}`]}
+                  logoUrl={"/BODON-black.png"}
+                  accentColor="#background"
+                  isFixed={true}
+                  onMenuOpen={() => setIsMenuOpen(true)}
+                  onMenuClose={() => setIsMenuOpen(false)}
+                />
+              </div>
+              <div className="content-wrapper">{children}</div>
+            </MenuProvider>
+          </DarkProvider>
         )}
       </body>
     </html>

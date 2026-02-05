@@ -1,49 +1,59 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Code2, Cloud, Smartphone, Shield } from "lucide-react";
-
-const services = [
-  {
-    icon: Code2,
-    title: "Web Development",
-    description:
-      "Building custom websites and apps with modern tools and good practices.",
-  },
-  {
-    icon: Cloud,
-    title: "Cloud Solutions",
-    description:
-      "Reliable and scalable cloud services to support your business needs.",
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile Apps",
-    description:
-      "Creating mobile apps that work well on all devices and are easy to use.",
-  },
-  {
-    icon: Shield,
-    title: "Security & QA",
-    description:
-      "Testing and security to keep your data safe and your systems running smoothly.",
-  },
-];
+import { useDarkContext } from "./DarkContext";
 
 export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { lang } = useDarkContext();
+  const services = [
+    {
+      icon: Code2,
+      title: lang === "en" ? "Web Development" : "Вэб хөгжүүлэлт",
+      description:
+        lang === "en"
+          ? "Building custom websites and apps with modern tools and good practices."
+          : "Орчин үеийн хэрэгсэл, шилдэг практик ашиглан захиалгат вэб сайт болон апп хөгжүүлдэг.",
+    },
+    {
+      icon: Cloud,
+      title: lang === "en" ? "Automation" : "Автоматжуулалт",
+
+      description:
+        lang === "en"
+          ? "Implementing automated systems that optimize workflows and reduce manual work."
+          : "Ажил үүргийг хялбарчилж, гар ажиллагааг багасгах автоматжуулсан системүүдийг хэрэгжүүлдэг.",
+    },
+    {
+      icon: Smartphone,
+      title: lang === "en" ? "Mobile Apps" : "Гар утасны аппликейшн",
+      description:
+        lang === "en"
+          ? "Creating mobile apps that work well on all devices and are easy to use."
+          : "Бүх төхөөрөмж дээр сайн ажиллах, хэрэглээнд ээлтэй гар утасны апп бүтээдэг.",
+    },
+    {
+      icon: Shield,
+      title: lang === "en" ? "Security & QA" : "Аюулгүй байдал & QA",
+      description:
+        lang === "en"
+          ? "Testing and security to keep your data safe and your systems running smoothly."
+          : "Таны өгөгдлийг хамгаалж, системүүдийг найдвартай ажиллуулах тест ба аюулгүй байдал.",
+    },
+  ];
 
   return (
     <section
       style={{
         transform: `translateX(${isMenuOpen ? "-0%" : "0"})`,
-        width: `${isMenuOpen ? "70%" : "100%"}`,
+        width: `${isMenuOpen ? "70.3%" : "100%"}`,
         transition: "transform 0.5s ease-in-out, width 0.5s ease-in-out",
       }}
       id="services"
-      className="py-32 md:py-48 px-6 bg-muted/30 h-screen transition-transform duration-500"
+      className="py-32 md:py-48 px-6 h-screen bg-transparent transition-transform duration-500"
       ref={ref}
     >
       <div className="max-w-6xl mx-auto mt-[-120]">
@@ -53,15 +63,29 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-20"
         >
-          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6">
-            Services
-          </p>
-          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-foreground">
-            What we <span className="italic">do</span>
-          </h2>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={lang}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className=""
+            >
+              <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6">
+                {lang === "en" ? "Services" : "Үйл ажиллагаа"}
+              </span>
+              <h2 className="text-4xl md:text-5xl font-light mt-6 tracking-tight mb-0 text-foreground">
+                {lang === "en" ? "What we" : "Бид юу"}
+                <span className="italic">
+                  {lang === "en" ? "Do" : " Хийдэг вэ?"}
+                </span>
+              </h2>
+            </motion.div>
+          </AnimatePresence>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 mt-[-50]">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -72,19 +96,30 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
                 delay: 0.1 * i,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group relative p-8 md:p-12 bg-background border border-border/50 rounded-2xl hover:border-foreground/20 transition-all duration-500"
+              className="group relative p-8 md:p-12 bg-background/30   border border-border/50 rounded-2xl hover:border-foreground/20 transition-all duration-500"
             >
               <div className="flex items-start gap-6">
                 <div className="p-3 rounded-xl bg-muted group-hover:bg-foreground group-hover:text-background transition-all duration-500">
                   <service.icon className="h-6 w-6" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-light text-foreground mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    {service.description}
-                  </p>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={lang}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className=""
+                    >
+                      <h3 className="text-xl font-light text-foreground mb-3">
+                        {service.title}
+                      </h3>
+                      <span className="text-muted-foreground font-light leading-relaxed">
+                        {service.description}
+                      </span>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </div>
               <motion.div

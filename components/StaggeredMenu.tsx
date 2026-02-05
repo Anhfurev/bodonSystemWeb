@@ -1,5 +1,13 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { gsap } from "gsap";
+import Image from "next/image";
+import { useDarkContext } from "./DarkContext";
 
 export interface StaggeredMenuItem {
   label: string;
@@ -18,7 +26,7 @@ export interface StaggeredMenuProps {
   displaySocials?: boolean;
   displayItemNumbering?: boolean;
   className?: string;
-  logoUrl?: string;
+  logoUrl?: any;
   menuButtonColor?: string;
   openMenuButtonColor?: string;
   accentColor?: string;
@@ -27,6 +35,7 @@ export interface StaggeredMenuProps {
   closeOnClickAway?: boolean;
   onMenuOpen?: () => void;
   onMenuClose?: () => void;
+  isDark?: boolean;
 }
 
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
@@ -46,7 +55,10 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   closeOnClickAway = true,
   onMenuOpen,
   onMenuClose,
+  isDark = true,
 }: StaggeredMenuProps) => {
+  const [dark, setDark] = useState(false);
+  const [logo, setLogo] = useState(logoUrl);
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
 
@@ -72,6 +84,15 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const busyRef = useRef(false);
 
   const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null);
+
+  useEffect(() => {
+    console.log("isDark in StaggeredMenu:", isDark);
+    if (isDark) {
+      setLogo("/BODON-white.png");
+    } else {
+      setLogo("/BODON-black.png");
+    }
+  }, [isDark, logoUrl]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -298,7 +319,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     spinTweenRef.current?.kill();
 
     if (opening) {
-      // ensure container never rotates
       gsap.set(icon, { rotate: 0, transformOrigin: "50% 50%" });
       spinTweenRef.current = gsap
         .timeline({ defaults: { ease: "power4.out" } })
@@ -389,9 +409,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     if (target) {
       onMenuOpen?.();
       playOpen();
+      document.body.classList.add("menu-open");
     } else {
       onMenuClose?.();
       playClose();
+      document.body.classList.remove("menu-open");
     }
 
     animateIcon(target);
@@ -489,8 +511,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             className="sm-logo flex items-center select-none pointer-events-auto"
             aria-label="Logo"
           >
-            <img
-              src={logoUrl || "/src/assets/logos/reactbits-gh-white.svg"}
+            <Image
+              src={logo || "/src/assets/logos/reactbits-gh-white.svg"}
               alt="Logo"
               className="sm-logo-img block h-8 w-auto object-contain"
               draggable={false}
@@ -501,7 +523,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
           <button
             ref={toggleBtnRef}
-            className={`sm-toggle relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto ${
+            className={`sm-toggle  relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto ${
               open ? "text-black" : "text-[#e9e9ef]"
             }`}
             aria-label={open ? "Close menu" : "Open menu"}
@@ -517,7 +539,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             >
               <span
                 ref={textInnerRef}
-                className="sm-toggle-textInner flex flex-col leading-none"
+                className="sm-toggle-textInner text-white !important flex flex-col leading-none"
               >
                 {textLines.map((l, i) => (
                   <span
@@ -716,7 +738,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 }
 
 .sm-toggle-textInner {
-  color: #000;
+  color: ${isDark ? "white" : "black"} !important;
   display: flex;
   flex-direction: column;
   line-height: 1;
@@ -729,6 +751,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 }
 
 .sm-icon {
+color: ${isDark ? "black" : "white"} !important;
   position: relative;
   width: 14px;
   height: 14px;
@@ -740,6 +763,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 }
 
 .sm-icon-line {
+  background:${isDark ? "white" : "black"} !important;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -763,7 +787,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   right: 0;
   width: clamp(220px, 35vw, 380px);
   height: 100%;
-  background: #fff;
+  background:${isDark ? "black" : "#e4e4e5"} !important;
   display: flex;
   flex-direction: column;
   padding: 6em 2em 2em 2em; /* top padding stays for design */
@@ -780,6 +804,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 }
 
 .sm-prelayers {
+border:0
   position: absolute;
   top: 0;
   right: 0;
@@ -823,7 +848,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   margin: 0;
   font-size: 1rem;
   font-weight: 500;
-  color: var(--sm-accent, #000);
+  color: ${isDark ? "white" : "black"} !important;
 }
 
 .sm-socials-list {
@@ -835,12 +860,13 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+   color: ${isDark ? "white" : "black"} !important;
 }
 
 .sm-socials-link {
   font-size: 1.2rem;
   font-weight: 500;
-  color: #000;
+  color: ${isDark ? "white" : "black"} !important;
   text-decoration: none;
   position: relative;
   padding: 2px 0;
@@ -870,7 +896,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
 .sm-panel-item {
   position: relative;
-  color: #000;
+color: ${isDark ? "white" : "black"};
   font-weight: 600;
   font-size: 4rem;
   cursor: pointer;

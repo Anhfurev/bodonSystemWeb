@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
@@ -8,6 +8,8 @@ import { Float } from "@react-three/drei";
 import type { Mesh, Group } from "three";
 import * as THREE from "three";
 import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
+import { useDarkContext } from "./DarkContext";
+import LightRays from "./LightRays";
 
 function Polygon({
   position,
@@ -40,7 +42,7 @@ function Polygon({
         <meshStandardMaterial
           color={color}
           transparent
-          opacity={0.15}
+          opacity={0.2}
           wireframe
         />
       </mesh>
@@ -107,45 +109,55 @@ function MouseTracker({ children }: { children: React.ReactNode }) {
 }
 
 function Scene() {
+  const { isDark } = useDarkContext();
+  console.log("isDark in Scene3D:", isDark);
+  useEffect(() => {
+    if (isDark == true) {
+      setColor("#fff");
+    } else {
+      setColor("#000");
+    }
+  }, [isDark]);
+  const [color, setColor] = React.useState("#fff");
   const polygons = useMemo(
     () => [
       {
         position: [-4, 2, -5] as [number, number, number],
         rotation: [0, 0, 0] as [number, number, number],
         scale: 1.5,
-        color: "#999999",
+        color: color,
         speed: 1,
       },
       {
         position: [4, -1, -8] as [number, number, number],
         rotation: [1, 0, 0] as [number, number, number],
         scale: 2,
-        color: "#888888",
+        color: color,
         speed: 0.8,
       },
       {
         position: [-2, -2, -6] as [number, number, number],
         rotation: [0, 1, 0] as [number, number, number],
         scale: 1,
-        color: "#aaaaaa",
+        color: color,
         speed: 1.2,
       },
       {
         position: [3, 3, -10] as [number, number, number],
         rotation: [0.5, 0.5, 0] as [number, number, number],
         scale: 2.5,
-        color: "#777777",
+        color: color,
         speed: 0.6,
       },
       {
         position: [0, 0, -12] as [number, number, number],
         rotation: [0, 0, 0.5] as [number, number, number],
         scale: 3,
-        color: "#999999",
+        color: color,
         speed: 0.4,
       },
     ],
-    [],
+    [color],
   );
 
   return (
@@ -163,7 +175,6 @@ function Scene() {
 }
 
 export default function Scene3D({ isMenuOpen }: { isMenuOpen: boolean }) {
-  console.log(isMenuOpen);
   return (
     <div
       style={{
@@ -172,12 +183,35 @@ export default function Scene3D({ isMenuOpen }: { isMenuOpen: boolean }) {
       }}
       className="fixed inset-0 -z-10 "
     >
-      <Canvas
-        camera={{ position: [0, 0, 10], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <Scene />
-      </Canvas>
+      <div className="fixed inset-0 -z-10">
+        {/* Visual-only layer */}
+        <div className="fixed inset-0 pointer-events-none">
+          <LightRays
+            className="custom-rays"
+            raysOrigin="top-center"
+            raysColor="#ffffff"
+            raysSpeed={1}
+            lightSpread={0.5}
+            rayLength={3}
+            followMouse
+            mouseInfluence={0.1}
+            noiseAmount={0}
+            distortion={0}
+            pulsating={false}
+            fadeDistance={1}
+            saturation={1}
+          />
+        </div>
+
+        {/* Interactive layer */}
+        <Canvas
+          className="relative z-10"
+          camera={{ position: [0, 0, 10], fov: 45 }}
+          gl={{ antialias: true, alpha: true }}
+        >
+          <Scene />
+        </Canvas>
+      </div>
     </div>
   );
 }
