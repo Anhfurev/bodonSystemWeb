@@ -56,7 +56,7 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
       className="py-32 md:py-48 px-6 h-screen bg-transparent transition-transform duration-500"
       ref={ref}
     >
-      <div className="max-w-6xl mx-auto mt-[-120]">
+      <div className="max-w-6xl mx-auto mt-[-120] 2xl:mt-0">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

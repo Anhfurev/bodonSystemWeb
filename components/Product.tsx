@@ -45,7 +45,7 @@ export function Product({ isMenuOpen }: { isMenuOpen: boolean }) {
       }}
       className="py-32 md:py-48 !important px-6 h-screen transition-transform duration-500"
     >
-      <div className="max-w-6xl mx-auto pt-[-40] mt-[-100]">
+      <div className="max-w-6xl mx-auto pt-[-40] 2xl:mt-0 mt-[-100]">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

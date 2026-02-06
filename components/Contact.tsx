@@ -55,7 +55,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
       className="py-32 md:py-48 px-6 h-screen transition-transform duration-500"
       ref={ref}
     >
-      <div className="max-w-4xl mx-auto mt-[-130]">
+      <div className="max-w-4xl mx-auto 2xl:0 mt-[-130]">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

@@ -15,10 +15,10 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
         transition: "transform 0.5s ease-in-out, width 0.5s ease-in-out",
       }}
       id="about"
-      className={`py-32 md:py-48 pt-10 px-6 h-screen transition-transform duration-500`}
+      className={`py-32 md:py-48 pt-10 px-6 h-screen  transition-transform duration-500`}
       ref={ref}
     >
-      <div className="max-w-6xl mx-auto mt-[-30]">
+      <div className="max-w-6xl mx-auto 2xl:mt-[90] mt-[-30]">
         <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
