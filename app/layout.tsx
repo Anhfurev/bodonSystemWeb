@@ -12,6 +12,7 @@ import { menuItems } from "@/lib/mock";
 import { DarkProvider } from "@/components/DarkContext";
 import { Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,14 +41,14 @@ export default function RootLayout({
   const [textColorSc, setTextColorSc] = useState("#000");
   const [lang, setLang] = useState<"en" | "mn">("en");
   function isItDark(dark: boolean) {
+    localStorage.setItem("isDark", dark ? "true" : "false");
     setIsDark(dark);
-    setTextColor(dark ? "#000" : "#caccce");
-    setTextColorSc(dark ? "#caccce" : "#000");
+    setTextColor(dark ? "#fff" : "muted-foreground");
+    setTextColorSc(dark ? "muted-foreground" : "#000");
   }
   function Changelanguage() {
     setLang(lang === "en" ? "mn" : "en");
   }
-  console.log("Language in RootLayout:", lang);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -58,6 +59,10 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <title>Bodon System</title>
+        <meta name="description" content="Bodon Systems" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
@@ -72,7 +77,7 @@ export default function RootLayout({
                 />
                 <Button
                   onClick={Changelanguage}
-                  className="z-10 fixed right-36 top-8.5"
+                  className="z-10 fixed right-36 top-8.5 bg-foreground "
                 >
                   <Languages size={40} strokeWidth={1.75} />
                 </Button>

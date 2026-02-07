@@ -1,3 +1,6 @@
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/set-state-in-effect */
 import React, {
   useCallback,
   useEffect,
@@ -507,20 +510,21 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-none z-20"
           aria-label="Main navigation header"
         >
-          <div
-            className="sm-logo flex items-center select-none pointer-events-auto"
-            aria-label="Logo"
-          >
-            <Image
-              src={logo || "/src/assets/logos/reactbits-gh-white.svg"}
-              alt="Logo"
-              className="sm-logo-img block h-8 w-full object-contain"
-              draggable={false}
-              width={240}
-              height={24}
-            />
-          </div>
-
+          <a href="#home">
+            <div
+              className="sm-logo flex items-center select-none pointer-events-auto"
+              aria-label="Logo"
+            >
+              <Image
+                src={logo || "/src/assets/logos/reactbits-gh-white.svg"}
+                alt="Logo"
+                className="sm-logo-img block h-8 w-full object-contain"
+                draggable={false}
+                width={240}
+                height={24}
+              />
+            </div>
+          </a>
           <button
             ref={toggleBtnRef}
             className={`sm-toggle  relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto ${

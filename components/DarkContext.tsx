@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { createContext, useContext } from "react";
 
 type DarkContextType = {
   isDark: boolean;

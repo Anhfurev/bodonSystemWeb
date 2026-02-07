@@ -4,7 +4,8 @@ import { Hero } from "./Hero";
 import About from "./About";
 import { Services } from "./Services";
 import { Contact } from "./Contact";
-import { Product } from "./Product";
+import { Journey } from "./Journey";
+import { TechStack } from "./TechStack";
 
 export const ScrollStop = ({ isMenuOpen }: { isMenuOpen: boolean }) => {
   return (
@@ -19,8 +20,12 @@ export const ScrollStop = ({ isMenuOpen }: { isMenuOpen: boolean }) => {
         <Services isMenuOpen={isMenuOpen} />
       </div>
       <div className="snap-start">
-        <Product isMenuOpen={isMenuOpen} />
+        <TechStack isMenuOpen={isMenuOpen} />
       </div>
+      <div className="snap-start">
+        <Journey isMenuOpen={isMenuOpen} />
+      </div>
+
       <div className="snap-start">
         <Contact isMenuOpen={isMenuOpen} />
       </div>

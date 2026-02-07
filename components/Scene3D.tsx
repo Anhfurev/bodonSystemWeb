@@ -1,15 +1,18 @@
+/* eslint-disable react-hooks/purity */
+/* eslint-disable react-hooks/immutability */
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import type { Mesh, Group } from "three";
 import * as THREE from "three";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
+
 import { useDarkContext } from "./DarkContext";
 import LightRays from "./LightRays";
+import { motion } from "motion/react";
 
 function Polygon({
   position,
@@ -126,35 +129,35 @@ function Scene() {
         rotation: [0, 0, 0] as [number, number, number],
         scale: 1.5,
         color: color,
-        speed: 1,
+        speed: 3,
       },
       {
         position: [4, -1, -8] as [number, number, number],
         rotation: [1, 0, 0] as [number, number, number],
         scale: 2,
         color: color,
-        speed: 0.8,
+        speed: 2,
       },
       {
         position: [-2, -2, -6] as [number, number, number],
         rotation: [0, 1, 0] as [number, number, number],
         scale: 1,
         color: color,
-        speed: 1.2,
+        speed: 2.5,
       },
       {
         position: [3, 3, -10] as [number, number, number],
         rotation: [0.5, 0.5, 0] as [number, number, number],
         scale: 2.5,
         color: color,
-        speed: 0.6,
+        speed: 4,
       },
       {
         position: [0, 0, -12] as [number, number, number],
         rotation: [0, 0, 0.5] as [number, number, number],
         scale: 3,
         color: color,
-        speed: 0.4,
+        speed: 3,
       },
     ],
     [color],
@@ -175,16 +178,31 @@ function Scene() {
 }
 
 export default function Scene3D({ isMenuOpen }: { isMenuOpen: boolean }) {
+  const [menuWidth, setMenuWidth] = useState(0);
+
+  useEffect(() => {
+    const updateMenuWidth = () => {
+      const menuEl = document.querySelector(
+        ".staggered-menu-panel",
+      ) as HTMLElement | null;
+      if (menuEl) setMenuWidth(menuEl.offsetWidth);
+    };
+    updateMenuWidth();
+    window.addEventListener("resize", updateMenuWidth);
+    return () => window.removeEventListener("resize", updateMenuWidth);
+  }, []);
+
   return (
-    <div
-      style={{
-        transform: `translateX(${isMenuOpen ? "-15%" : "0"})`,
-        transition: `transform ${isMenuOpen ? "0.5s" : "0.6s"} ease-in-out`,
+    <motion.div
+      animate={{ x: isMenuOpen ? -menuWidth / 2 : 0 }}
+      transition={{
+        duration: 0.55,
+        ease: [0.22, 1, 0.36, 1],
+        delay: isMenuOpen ? 0 : 0.1,
       }}
-      className="fixed inset-0 -z-10 "
+      className="fixed inset-0 -z-10"
     >
       <div className="fixed inset-0 -z-10">
-        {/* Visual-only layer */}
         <div className="fixed inset-0 pointer-events-none">
           <LightRays
             className="custom-rays"
@@ -203,7 +221,6 @@ export default function Scene3D({ isMenuOpen }: { isMenuOpen: boolean }) {
           />
         </div>
 
-        {/* Interactive layer */}
         <Canvas
           className="relative z-10"
           camera={{ position: [0, 0, 10], fov: 45 }}
@@ -212,6 +229,6 @@ export default function Scene3D({ isMenuOpen }: { isMenuOpen: boolean }) {
           <Scene />
         </Canvas>
       </div>
-    </div>
+    </motion.div>
   );
 }

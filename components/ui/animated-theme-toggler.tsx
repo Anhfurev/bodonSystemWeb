@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -25,6 +26,11 @@ export const AnimatedThemeToggler = ({
       setIsDark(document.documentElement.classList.contains("dark"));
     };
 
+    const storedIsDark = localStorage.getItem("isDark") === "true";
+    setIsDark(storedIsDark);
+    document.documentElement.classList.toggle("dark", storedIsDark);
+    if (isItDark) isItDark(storedIsDark);
+
     updateTheme();
 
     const observer = new MutationObserver(updateTheme);
@@ -45,7 +51,7 @@ export const AnimatedThemeToggler = ({
       flushSync(() => {
         setIsDark(newTheme);
         document.documentElement.classList.toggle("dark", newTheme);
-        localStorage.setItem("theme", newTheme ? "dark" : "light");
+        localStorage.setItem("isDark", newTheme ? "true" : "false");
       });
     }).ready;
 
