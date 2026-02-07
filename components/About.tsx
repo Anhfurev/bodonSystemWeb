@@ -25,7 +25,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="about"
       ref={ref}
-      className="pt-20 px-6 flex justify-center min-h-screen"
+      className="pt-20 max-w-350 mx-auto px-6 flex justify-center min-h-screen"
     >
       <div
         className="mx-auto my-auto"
