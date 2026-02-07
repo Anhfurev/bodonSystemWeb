@@ -60,8 +60,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Bodon System</title>
+        <title>Bodon Systems</title>
         <meta name="description" content="Bodon Systems" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}

@@ -2,7 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useContext } from "react";
+import { useDarkContext } from "./DarkContext";
 
 interface LogoLoopProps {
   logos: { node: React.ReactNode; title: string; href: string }[];
@@ -30,16 +31,30 @@ export default function LogoLoop({
   className,
 }: LogoLoopProps) {
   const repeatedLogos = [...logos, ...logos, ...logos, ...logos];
-
+  const { isDark } = useDarkContext();
   return (
     <div className={cn("relative w-full overflow-hidden py-4", className)}>
       {fadeOut && (
         <>
-          <div className="absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background to-transparent pointer-events-none" />
-        </>
-      )}
+          <div
+            className="absolute inset-y-0 left-0 w-24 pointer-events-none z-10"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent, black 40%)",
+              maskImage: "linear-gradient(to right, transparent, black 40%)",
+            }}
+          />
 
+          <div
+            className="absolute inset-y-0 right-0 w-24 pointer-events-none z-10"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to left, transparent, black 40%)",
+              maskImage: "linear-gradient(to left, transparent, black 40%)",
+            }}
+          />
+        </>
+      )}{" "}
       <motion.div
         className="flex w-max items-center"
         animate={{
