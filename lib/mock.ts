@@ -1,10 +1,35 @@
 export const menuItems = [
-  { label: "Home", ariaLabel: "Go to home page", link: "#home" },
-  { label: "About", ariaLabel: "Learn about us", link: "#about" },
-  { label: "Services", ariaLabel: "View our services", link: "#services" },
-  { label: "Tech", ariaLabel: "View our tech stack", link: "#techstack" },
-  { label: "Journey", ariaLabel: "View our products", link: "#journey" },
-  { label: "Contact", ariaLabel: "Get in touch", link: "#contact" },
+  { label: "Home", ariaLabel: "Go to home page", link: "#home", Mon: "Нүүр" },
+  {
+    label: "About",
+    ariaLabel: "Learn about us",
+    link: "#about",
+    Mon: "Тухай",
+  },
+  {
+    label: "Services",
+    ariaLabel: "View our services",
+    link: "#services",
+    Mon: "Үйлчилгээ",
+  },
+  {
+    label: "TechStack",
+    ariaLabel: "View our tech stack",
+    link: "#techstack",
+    Mon: "Технологи",
+  },
+  {
+    label: "Experience",
+    ariaLabel: "View our products",
+    link: "#experience",
+    Mon: "Туршлага",
+  },
+  {
+    label: "Contact",
+    ariaLabel: "Get in touch",
+    link: "#contact",
+    Mon: "Холбогдох",
+  },
 ];
 
 export const socialItems = [

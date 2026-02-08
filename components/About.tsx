@@ -25,7 +25,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="about"
       ref={ref}
-      className="pt-20 max-w-350 mx-auto px-6 flex justify-center min-h-screen"
+      className="pt-20 max-w-350 overflow-scroll mx-auto px-6 flex justify-center min-h-screen"
     >
       <div
         className="mx-auto my-auto"
@@ -107,12 +107,12 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   className="space-y-4 min-h-[2rem]"
                 >
-                  <span className="block text-muted-foreground font-light leading-relaxed text-[clamp(1rem,2.5vw,1.3rem)]">
+                  <span className="block text-muted-foreground font-light leading-relaxed text-[clamp(1rem,2.5vw,1.2rem)]">
                     {lang === "en"
                       ? "At Bodon Systems, we specialize in creating robust and efficient systems that empower businesses to thrive in the digital age."
                       : "Бодон системсийн бид дижитал эрин үед бизнесүүдийг амжилттай хөгжихөд нь дэмжих найдвартай, үр ашигтай системүүдийг бүтээхэд мэргэшсэн хамт олон."}
                   </span>
-                  <span className="block text-muted-foreground font-light leading-relaxed text-[clamp(1rem,2.5vw,1.375rem)]">
+                  <span className="block text-muted-foreground font-light leading-relaxed text-[clamp(1rem,2.5vw,1.2rem)]">
                     {lang === "en"
                       ? "Our approach is built on understanding your unique needs and developing custom systems that streamline operations, boost productivity, and drive success."
                       : "Бид таны онцлог хэрэгцээг гүнзгий ойлгож, үйл ажиллагааг хялбаршуулах, бүтээмжийг нэмэгдүүлэх, амжилтыг бий болгох системүүдийг хөгжүүлэхэд тулгуурлан ажилладаг."}

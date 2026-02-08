@@ -8,11 +8,11 @@ import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import React from "react";
 import { MenuProvider } from "@/components/MenuContext";
 import { socialItems } from "@/lib/mock";
-import { menuItems } from "@/lib/mock";
 import { DarkProvider } from "@/components/DarkContext";
 import { Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/Footer";
+import { menuItems } from "@/lib/mock";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,7 +62,7 @@ export default function RootLayout({
       <head>
         <title>Bodon Systems</title>
         <meta name="description" content="Bodon Systems" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="favicon.ico" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}

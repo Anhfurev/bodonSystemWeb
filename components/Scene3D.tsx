@@ -9,7 +9,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import type { Mesh, Group } from "three";
 import * as THREE from "three";
-
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 import { useDarkContext } from "./DarkContext";
 import LightRays from "./LightRays";
 import { motion } from "motion/react";
@@ -45,7 +45,7 @@ function Polygon({
         <meshStandardMaterial
           color={color}
           transparent
-          opacity={0.2}
+          opacity={0.1}
           wireframe
         />
       </mesh>

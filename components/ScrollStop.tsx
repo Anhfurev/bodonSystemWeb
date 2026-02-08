@@ -4,7 +4,7 @@ import { Hero } from "./Hero";
 import About from "./About";
 import { Services } from "./Services";
 import { Contact } from "./Contact";
-import { Journey } from "./Journey";
+import { Journey } from "./Experience";
 import { TechStack } from "./TechStack";
 
 export const ScrollStop = ({ isMenuOpen }: { isMenuOpen: boolean }) => {

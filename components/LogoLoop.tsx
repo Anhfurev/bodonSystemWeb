@@ -31,7 +31,7 @@ export default function LogoLoop({
   className,
 }: LogoLoopProps) {
   const repeatedLogos = [...logos, ...logos, ...logos, ...logos];
-  const { isDark } = useDarkContext();
+
   return (
     <div className={cn("relative w-full overflow-hidden py-4", className)}>
       {fadeOut && (

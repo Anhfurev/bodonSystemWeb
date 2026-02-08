@@ -16,6 +16,7 @@ export interface StaggeredMenuItem {
   label: string;
   ariaLabel: string;
   link: string;
+  Mon: string;
 }
 export interface StaggeredMenuSocialItem {
   label: string;
@@ -63,7 +64,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const [dark, setDark] = useState(false);
   const [logo, setLogo] = useState(logoUrl);
   const [open, setOpen] = useState(false);
+  const { lang } = useDarkContext();
+  const menuLabel = lang === "en" ? "Menu" : "Цэс";
+  const closeLabel = lang === "en" ? "Close" : "Хаах";
   const openRef = useRef(false);
+  const prevLangRef = useRef(lang);
 
   const panelRef = useRef<HTMLDivElement | null>(null);
   const preLayersRef = useRef<HTMLDivElement | null>(null);
@@ -75,7 +80,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
   const textInnerRef = useRef<HTMLSpanElement | null>(null);
   const textWrapRef = useRef<HTMLSpanElement | null>(null);
-  const [textLines, setTextLines] = useState<string[]>(["Menu", "Close"]);
+  const [textLines, setTextLines] = useState<string[]>([menuLabel, closeLabel]);
 
   const openTlRef = useRef<gsap.core.Timeline | null>(null);
   const closeTweenRef = useRef<gsap.core.Tween | null>(null);
@@ -96,6 +101,19 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       setLogo("/BODON-black.png");
     }
   }, [isDark, logoUrl]);
+
+  useEffect(() => {
+    if (prevLangRef.current !== lang) {
+      setTextLines([
+        open ? closeLabel : menuLabel,
+        open ? menuLabel : closeLabel,
+      ]);
+      if (textInnerRef.current) {
+        gsap.set(textInnerRef.current, { yPercent: 0 });
+      }
+      prevLangRef.current = lang;
+    }
+  }, [lang, open, menuLabel, closeLabel]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -369,37 +387,40 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     }
   }, [changeMenuColorOnOpen, menuButtonColor, openMenuButtonColor]);
 
-  const animateText = useCallback((opening: boolean) => {
-    const inner = textInnerRef.current;
-    if (!inner) return;
+  const animateText = useCallback(
+    (opening: boolean) => {
+      const inner = textInnerRef.current;
+      if (!inner) return;
 
-    textCycleAnimRef.current?.kill();
+      textCycleAnimRef.current?.kill();
 
-    const currentLabel = opening ? "Menu" : "Close";
-    const targetLabel = opening ? "Close" : "Menu";
-    const cycles = 3;
+      const currentLabel = opening ? menuLabel : closeLabel;
+      const targetLabel = opening ? closeLabel : menuLabel;
+      const cycles = 3;
 
-    const seq: string[] = [currentLabel];
-    let last = currentLabel;
-    for (let i = 0; i < cycles; i++) {
-      last = last === "Menu" ? "Close" : "Menu";
-      seq.push(last);
-    }
-    if (last !== targetLabel) seq.push(targetLabel);
-    seq.push(targetLabel);
+      const seq: string[] = [currentLabel];
+      let last = currentLabel;
+      for (let i = 0; i < cycles; i++) {
+        last = last === menuLabel ? closeLabel : menuLabel;
+        seq.push(last);
+      }
+      if (last !== targetLabel) seq.push(targetLabel);
+      seq.push(targetLabel);
 
-    setTextLines(seq);
-    gsap.set(inner, { yPercent: 0 });
+      setTextLines(seq);
+      gsap.set(inner, { yPercent: 0 });
 
-    const lineCount = seq.length;
-    const finalShift = ((lineCount - 1) / lineCount) * 100;
+      const lineCount = seq.length;
+      const finalShift = ((lineCount - 1) / lineCount) * 100;
 
-    textCycleAnimRef.current = gsap.to(inner, {
-      yPercent: -finalShift,
-      duration: 0.5 + lineCount * 0.07,
-      ease: "power4.out",
-    });
-  }, []);
+      textCycleAnimRef.current = gsap.to(inner, {
+        yPercent: -finalShift,
+        duration: 0.5 + lineCount * 0.07,
+        ease: "power4.out",
+      });
+    },
+    [menuLabel, closeLabel],
+  );
 
   const toggleMenu = useCallback(() => {
     const target = !openRef.current;
@@ -530,7 +551,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             className={`sm-toggle  relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto ${
               open ? "text-black" : "text-[#e9e9ef]"
             }`}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? closeLabel : menuLabel}
             aria-expanded={open}
             aria-controls="staggered-menu-panel"
             onClick={toggleMenu}
@@ -584,7 +605,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             <ul
               className="sm-panel-list list-none m-0 p-0 flex flex-col gap-2"
               role="list"
-              data-numbering={displayItemNumbering || undefined}
             >
               {items && items.length ? (
                 items.map((it, idx) => (
@@ -596,10 +616,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                       className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
                       href={it.link}
                       aria-label={it.ariaLabel}
-                      data-index={idx + 1}
                     >
                       <span className="sm-panel-itemLabel inline-block origin-[50%_100%] will-change-transform">
-                        {it.label}
+                        {lang === "en" ? it.label : it.Mon}
                       </span>
                     </a>
                   </li>
@@ -611,7 +630,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 >
                   <span className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]">
                     <span className="sm-panel-itemLabel inline-block origin-[50%_100%] will-change-transform">
-                      No items
+                      {lang === "en" ? "No items" : "Мэдээлэл алга"}
                     </span>
                   </span>
                 </li>
@@ -624,7 +643,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 aria-label="Social links"
               >
                 <h3 className="sm-socials-title m-0 text-base font-medium text-(--sm-accent,#ff0000)">
-                  Socials
+                  {lang === "en" ? "Socials" : "Сошиал"}
                 </h3>
                 <ul
                   className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap"
@@ -789,12 +808,12 @@ color: ${isDark ? "black" : "white"} !important;
   position: absolute;
   top: 0;
   right: 0;
-  width: clamp(220px, 35vw, 400px);
+  width: clamp(220px, 35vw, 410px);
   height: 100%;
   background:${isDark ? "black" : "#e4e4e5"} !important;
   display: flex;
   flex-direction: column;
-  padding: 6em 2em 2em 2em; /* top padding stays for design */
+  padding: 6em 0em 2em 1em; /* top padding stays for design */
   overflow-y: auto; /* allow scrolling */
   z-index: 10;
   backdrop-filter: blur(12px);
@@ -813,7 +832,7 @@ border:0
   top: 0;
   right: 0;
   bottom: 0;
-  width: clamp(260px, 35vw, 400px);
+  width: clamp(260px, 35vw, 410px);
   pointer-events: none;
   z-index: 5;
 }
