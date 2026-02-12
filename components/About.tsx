@@ -51,7 +51,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="uppercase tracking-[0.3em] text-muted-foreground mb-6 block text-[clamp(0.7rem,1.5vw,1rem)]">
+              <span className="uppercase tracking-[0.3em] text-foreground/70 mb-6 block text-[clamp(0.7rem,1.5vw,1rem)]">
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={lang}
@@ -107,12 +107,12 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   className="space-y-4 min-h-[2rem]"
                 >
-                  <span className="block text-muted-foreground font-light leading-relaxed text-[clamp(1rem,2.5vw,1.2rem)]">
+                  <span className="block text-foreground/70 font-light leading-relaxed text-[clamp(1rem,2.5vw,1.2rem)]">
                     {lang === "en"
                       ? "At Bodon Systems, we specialize in creating robust and efficient systems that empower businesses to thrive in the digital age."
                       : "Бодон системсийн бид дижитал эрин үед бизнесүүдийг амжилттай хөгжихөд нь дэмжих найдвартай, үр ашигтай системүүдийг бүтээхэд мэргэшсэн хамт олон."}
                   </span>
-                  <span className="block text-muted-foreground font-light leading-relaxed text-[clamp(1rem,2.5vw,1.2rem)]">
+                  <span className="block text-foreground/70 font-light leading-relaxed text-[clamp(1rem,2.5vw,1.2rem)]">
                     {lang === "en"
                       ? "Our approach is built on understanding your unique needs and developing custom systems that streamline operations, boost productivity, and drive success."
                       : "Бид таны онцлог хэрэгцээг гүнзгий ойлгож, үйл ажиллагааг хялбаршуулах, бүтээмжийг нэмэгдүүлэх, амжилтыг бий болгох системүүдийг хөгжүүлэхэд тулгуурлан ажилладаг."}
@@ -169,13 +169,13 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
                     transition={{ duration: 0.3, ease: "easeOut" }}
                     className="space-y-4 min-h-[6rem]"
                   >
-                    <span className="text-muted-foreground font-mono text-[clamp(0.875rem,1.5vw,1rem)]">
+                    <span className="text-foreground/70 font-mono text-[clamp(0.875rem,1.5vw,1rem)]">
                       {value.number}
                     </span>
                     <h1 className="mt-4 font-light text-foreground text-[clamp(1rem,2.5vw,1.625rem)]">
                       {value.title}
                     </h1>
-                    <span className="mt-3 text-muted-foreground font-light leading-relaxed text-[clamp(0.875rem,1.5vw,1rem)]">
+                    <span className="mt-3 text-foreground/70 font-light leading-relaxed text-[clamp(0.875rem,1.5vw,1rem)]">
                       {value.description}
                     </span>
                   </motion.div>

@@ -96,7 +96,7 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   className=""
                 >
-                  <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6">
+                  <span className="text-sm uppercase tracking-[0.3em] text-foreground/70 mb-6">
                     {lang === "en" ? "Services" : "Үйл ажиллагаа"}
                   </span>
                   <h2 className="text-4xl md:text-5xl font-light mt-6 tracking-tight mb-0 text-foreground">
@@ -139,7 +139,7 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
                           <h3 className="text-xl font-light text-foreground mb-3">
                             {service.title}
                           </h3>
-                          <span className="text-muted-foreground font-light leading-relaxed">
+                          <span className="text-foreground/70 font-light leading-relaxed">
                             {service.description}
                           </span>
                         </motion.div>
@@ -147,7 +147,7 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
                     </div>
                   </div>
                   <motion.div
-                    className="absolute bottom-8 right-8 text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors duration-500"
+                    className="absolute bottom-8 right-8 text-foreground/50 group-hover:text-muted-foreground/60 transition-colors duration-500"
                     whileHover={{ x: 5 }}
                   >
                     <span className="text-sm font-mono">0{i + 1}</span>

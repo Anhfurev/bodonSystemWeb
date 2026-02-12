@@ -47,7 +47,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.div
-                className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-8"
+                className="text-sm uppercase tracking-[0.3em] text-foreground/70 mb-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
@@ -113,7 +113,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
               </h1>
 
               <motion.div
-                className="mt-8 md:mt-12 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto font-light leading-relaxed"
+                className="mt-8 md:mt-12 text-lg md:text-xl text-foreground/70 max-w-xl mx-auto font-light leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7, duration: 0.8 }}
@@ -173,7 +173,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
                       size="lg"
                       className="rounded-full px-8 py-6 text-base border-foreground/20 hover:bg-foreground/5 transition-all duration-300 bg-transparent cursor-pointer"
                     >
-                      <a href="#journey">
+                      <a href="#experience">
                         {lang === "en" ? "View Our Work" : "Хийсэн ажилууд"}
                       </a>
                     </Button>
@@ -195,7 +195,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
                   ease: "easeInOut",
                 }}
               >
-                <ArrowDown className="h-5 w-5 text-muted-foreground" />
+                <ArrowDown className="h-5 w-5 text-foreground/70" />
               </motion.div>
             </motion.div>
           </div>

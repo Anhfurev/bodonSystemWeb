@@ -106,7 +106,7 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6 block">
+                  <span className="text-sm uppercase tracking-[0.3em] text-foreground/70 mb-6 block">
                     {lang === "en" ? "Technologies" : "Технологиуд"}
                   </span>
                   <h2 className="text-4xl md:text-5xl font-light mt-6 tracking-tight text-foreground">
@@ -131,10 +131,10 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
                   transition={{ duration: 0.5, delay: i * 0.05 }}
                   className="group flex items-center gap-4 p-4 rounded-2xl bg-background/40 border border-border/40 hover:border-foreground/20 hover:bg-background/60 transition-all duration-300"
                 >
-                  <div className="text-2xl text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                  <div className="text-2xl text-foreground/70 group-hover:text-foreground transition-colors duration-300">
                     {tech.node}
                   </div>
-                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                  <span className="text-sm font-medium text-foreground/70 group-hover:text-foreground transition-colors duration-300">
                     {tech.title}
                   </span>
                 </motion.a>

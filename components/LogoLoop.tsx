@@ -74,7 +74,7 @@ export default function LogoLoop({
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "flex items-center justify-center text-muted-foreground transition-all duration-300 hover:text-foreground",
+              "flex items-center justify-center text-foreground/70 transition-all duration-300 hover:text-foreground",
               scaleOnHover && "hover:scale-110",
             )}
             title={logo.title}

@@ -73,7 +73,7 @@ function TimelineNode({
               <Icon />
             </motion.div>
             <div className="flex-1">
-              <div className="text-sm text-left font-mono text-muted-foreground mb-2">
+              <div className="text-sm text-left font-mono text-foreground/70 mb-2">
                 {item.year}
               </div>
               <AnimatePresence mode="wait">
@@ -96,7 +96,7 @@ function TimelineNode({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.25 }}
-                  className="text-muted-foreground text-left font-light leading-relaxed"
+                  className="text-foreground/70 text-left font-light leading-relaxed"
                 >
                   {item.desc[lang]}
                 </motion.p>
@@ -121,7 +121,6 @@ function TimelineNode({
         ></motion.div>
       </div>
 
-      {/* Empty spacer */}
       <div className="flex-1 hidden md:block" />
     </motion.div>
   );
@@ -281,7 +280,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6 block">
+                <span className="text-sm uppercase tracking-[0.3em] text-foreground/70 mb-6 block">
                   {lang === "en" ? "Timeline" : "Цаг хугацаа"}
                 </span>
                 <h2 className="text-4xl md:text-5xl font-light mt-6 tracking-tight mb-0 text-foreground">
@@ -294,7 +293,6 @@ export function Journey({ isMenuOpen }: JourneyProps) {
             </AnimatePresence>
           </div>
 
-          {/* Timeline */}
           <AnimatePresence mode="wait">
             <motion.div
               key={lang}
@@ -313,7 +311,6 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 />
               </div>
 
-              {/* Timeline items */}
               <div className="flex flex-col gap-10 md:gap-14">
                 {timeline.map((item, index) => (
                   <TimelineNode
@@ -327,7 +324,6 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 ))}
               </div>
 
-              {/* End cap */}
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -340,7 +336,6 @@ export function Journey({ isMenuOpen }: JourneyProps) {
           </AnimatePresence>
         </motion.div>
 
-        {/* Details Modal */}
         <AnimatePresence>
           {selectedItem && (
             <>
@@ -372,7 +367,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 >
                   <button
                     onClick={() => setSelectedItem(null)}
-                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-muted/80 transition-colors text-muted-foreground hover:text-foreground"
+                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-muted/80 transition-colors text-foreground/70 hover:text-foreground"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -385,7 +380,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                       <selectedItem.icon className="w-6 h-6" />
                     </motion.div>
                     <div>
-                      <div className="text-sm font-mono text-muted-foreground mb-1">
+                      <div className="text-sm font-mono text-foreground/70 mb-1">
                         {selectedItem.year}
                       </div>
                       <h3 className="text-2xl font-light text-foreground">
@@ -401,7 +396,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                       transition={{ delay: 0.2, duration: 0.4 }}
                       className="prose dark:prose-invert max-w-none"
                     >
-                      <p className="text-muted-foreground leading-relaxed text-lg font-light">
+                      <p className="text-foreground/70 leading-relaxed text-lg font-light">
                         {selectedItem.details
                           ? selectedItem.details[lang]
                           : selectedItem.desc[lang]}
@@ -438,7 +433,6 @@ export function Journey({ isMenuOpen }: JourneyProps) {
           )}
         </AnimatePresence>
 
-        {/* Lightbox */}
         <AnimatePresence>
           {selectedPhoto && (
             <motion.div

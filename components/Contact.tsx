@@ -110,7 +110,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                         transition={{ duration: 0.3, ease: "easeOut" }}
                         className=""
                       >
-                        <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-2 pt-30">
+                        <span className="text-sm uppercase tracking-[0.3em] text-foreground/70 mb-2 pt-30">
                           {lang === "en" ? "Contact" : "Холбогдох"}
                         </span>
                         <h2 className="text-4xl md:text-5xl mt-2 font-light tracking-tight text-foreground">
@@ -120,7 +120,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                             {lang === "en" ? " together" : " Ажиллацгаая"}
                           </span>
                         </h2>
-                        <p className="mt-6 text-lg text-muted-foreground font-light max-w-xl mx-auto">
+                        <p className="mt-6 text-lg text-foreground/70 font-light max-w-xl mx-auto">
                           {lang === "en"
                             ? "Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as possible."
                             : "Төслийн санаа байна уу? Бид таныг сонсохыг хүсэж байна. Мессежээ илгээхэд бид аль болох хурдан хариу өгнө."}
@@ -159,7 +159,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                             <div className="space-y-2 ">
                               <label
                                 htmlFor="name"
-                                className="text-sm text-muted-foreground font-light mr-110"
+                                className="text-sm text-foreground/70 font-light mr-110"
                               >
                                 {lang === "en" ? "Name" : "Нэр"}
                               </label>
@@ -186,7 +186,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                           <div className="space-y-2">
                             <label
                               htmlFor="email"
-                              className="text-sm text-muted-foreground font-light"
+                              className="text-sm text-foreground/80 font-light"
                             >
                               {lang === "en" ? "Email" : "Мэйл"}
                             </label>
@@ -214,7 +214,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                         <div className="space-y-2">
                           <label
                             htmlFor="subject"
-                            className="text-sm text-muted-foreground font-light"
+                            className="text-sm text-foreground/80 font-light"
                           >
                             {lang === "en" ? "Subject" : "Гарчиг"}
                           </label>
@@ -240,7 +240,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                         <div className="space-y-2">
                           <label
                             htmlFor="message"
-                            className="text-sm text-muted-foreground font-light"
+                            className="text-sm text-foreground/80 font-light"
                           >
                             {lang === "en" ? "Message" : "Мессеж"}
                           </label>
