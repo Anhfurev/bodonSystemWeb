@@ -96,9 +96,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   useEffect(() => {
     console.log("isDark in StaggeredMenu:", isDark);
     if (isDark) {
-      setLogo("/BODON-white.png");
+      setLogo("/Lblack.png");
     } else {
-      setLogo("/BODON-black.png");
+      setLogo("/Lwhite.png");
     }
   }, [isDark, logoUrl]);
 
@@ -528,7 +528,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         </div>
 
         <header
-          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-none z-20"
+          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between  p-[2em]  bg-transparent pointer-events-none z-20"
           aria-label="Main navigation header"
         >
           <a href="#home">
@@ -705,7 +705,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2em;
   background: transparent;
   pointer-events: none;
   z-index: 20;
@@ -730,8 +729,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
 .sm-toggle {
   position: relative;
- 
- 
   align-items: center;
   gap: 0.7rem;
   background: transparent;

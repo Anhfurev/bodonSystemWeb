@@ -1,43 +1,38 @@
 "use client";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useDarkContext } from "./DarkContext";
+import { useMenuMetrics } from "../lib/utils";
 
 export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { lang } = useDarkContext();
-  const [menuWidth, setMenuWidth] = useState(0);
-
-  useEffect(() => {
-    const updateMenuWidth = () => {
-      const menuEl = document.querySelector(
-        ".staggered-menu-panel",
-      ) as HTMLElement | null;
-      if (menuEl) setMenuWidth(menuEl.offsetWidth);
-    };
-    updateMenuWidth();
-    window.addEventListener("resize", updateMenuWidth);
-    return () => window.removeEventListener("resize", updateMenuWidth);
-  }, []);
+  const { menuWidth, isMobile } = useMenuMetrics();
 
   return (
     <section
       id="about"
       ref={ref}
-      className="pt-20 max-w-350 overflow-scroll overflow-hidden mx-auto px-6 flex justify-center min-h-screen"
+      className="pt-10 sm:pt-20 max-w-350 overflow-hidden mx-auto px-4 sm:px-6 flex justify-center min-h-screen"
     >
       <div
         className="mx-auto my-auto"
         style={{
-          width: isMenuOpen ? `calc(100% - ${menuWidth}px)` : "100%",
-          transition: `width 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${
-            isMenuOpen ? "0s" : "0.2s"
-          }`
+          width: isMobile
+            ? "100%"
+            : isMenuOpen
+            ? `calc(100% - ${menuWidth}px)`
+            : "100%",
+          transition: isMobile
+            ? "none"
+            : `width 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${
+                isMenuOpen ? "0s" : "0.2s"
+              }`,
         }}
       >
         <motion.div
-          animate={{ x: isMenuOpen ? -menuWidth / 2 : 0 }}
+          animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}
           transition={{
             duration: 0.6,
             ease: [0.22, 1, 0.36, 1],
@@ -45,13 +40,13 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
           }}
           className="flex flex-col justify-center"
         >
-          <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-16 md:gap-24 items-start">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="uppercase tracking-[0.3em] text-foreground/70 mb-6 block text-[clamp(0.7rem,1.5vw,1rem)]">
+              <span className="uppercase tracking-[0.3em] text-foreground/70 mb-4 sm:mb-6 block text-[clamp(0.65rem,1.5vw,1rem)]">
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={lang}
@@ -59,13 +54,13 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="space-y-4 min-h-[6rem] mt-0"
+                    className="space-y-4 min-h-24 mt-0"
                   >
                     {lang === "en" ? "About Us" : "Бидний тухай"}
                   </motion.p>
                 </AnimatePresence>
               </span>
-              <h2 className="font-light tracking-tight leading-tight text-foreground text-[clamp(2.5rem,5vw,3.75rem)]">
+              <h2 className="font-light tracking-tight leading-tight text-foreground text-[clamp(1.5rem,4vw,3.75rem)]">
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={lang}
@@ -73,7 +68,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="space-y-4 min-h-[6rem] -mt-14"
+                    className="space-y-4 min-h-24 -mt-14"
                   >
                     {lang === "en"
                       ? "We unlock powerful"
@@ -105,7 +100,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="space-y-4 min-h-[2rem]"
+                  className="space-y-4 min-h-8"
                 >
                   <span className="block text-foreground/70 font-light leading-relaxed text-[clamp(1rem,2.5vw,1.2rem)]">
                     {lang === "en"
@@ -122,7 +117,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
             </motion.div>
           </div>
 
-          <div className="mt-16 md:mt-10 grid md:grid-cols-3 gap-12">
+          <div className="mt-12 sm:mt-16 md:mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
             {[
               {
                 number: "01",
@@ -167,7 +162,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="space-y-4 min-h-[6rem]"
+                    className="space-y-4 min-h-24"
                   >
                     <span className="text-foreground/70 font-mono text-[clamp(0.875rem,1.5vw,1rem)]">
                       {value.number}

@@ -13,6 +13,7 @@ import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 import { useDarkContext } from "./DarkContext";
 import LightRays from "./LightRays";
 import { motion } from "motion/react";
+import { useMenuMetrics } from "@/lib/utils";
 
 function Polygon({
   position,
@@ -178,23 +179,11 @@ function Scene() {
 }
 
 export default function Scene3D({ isMenuOpen }: { isMenuOpen: boolean }) {
-  const [menuWidth, setMenuWidth] = useState(0);
-
-  useEffect(() => {
-    const updateMenuWidth = () => {
-      const menuEl = document.querySelector(
-        ".staggered-menu-panel",
-      ) as HTMLElement | null;
-      if (menuEl) setMenuWidth(menuEl.offsetWidth);
-    };
-    updateMenuWidth();
-    window.addEventListener("resize", updateMenuWidth);
-    return () => window.removeEventListener("resize", updateMenuWidth);
-  }, []);
+  const { menuWidth, isMobile } = useMenuMetrics();
 
   return (
     <motion.div
-      animate={{ x: isMenuOpen ? -menuWidth / 2 : 0 }}
+      animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}
       transition={{
         duration: 0.55,
         ease: [0.22, 1, 0.36, 1],

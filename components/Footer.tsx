@@ -1,6 +1,6 @@
 import { MapPin, Phone, Building2, Mail } from "lucide-react";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useMenuMetrics } from "../lib/utils";
 import { useDarkContext } from "./DarkContext";
 
 export function Footer({
@@ -12,22 +12,10 @@ export function Footer({
 }) {
   const { lang: contextLang } = useDarkContext();
   const lang = propLang || contextLang;
-  const [menuWidth, setMenuWidth] = useState(0);
-
-  useEffect(() => {
-    const updateMenuWidth = () => {
-      const menuEl = document.querySelector(
-        ".staggered-menu-panel",
-      ) as HTMLElement | null;
-      if (menuEl) setMenuWidth(menuEl.offsetWidth);
-    };
-    updateMenuWidth();
-    window.addEventListener("resize", updateMenuWidth);
-    return () => window.removeEventListener("resize", updateMenuWidth);
-  }, []);
+  const { menuWidth, isMobile } = useMenuMetrics();
   return (
     <motion.div
-      animate={{ x: isMenuOpen ? -menuWidth / 2 : 0 }}
+      animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}
       transition={{
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
@@ -37,8 +25,14 @@ export function Footer({
     >
       <footer
         style={{
-          width: isMenuOpen ? `calc(140% - ${menuWidth}px)` : "100%",
-          transition: "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+          width: isMobile
+            ? "100%"
+            : isMenuOpen
+            ? `calc(140% - ${menuWidth}px)`
+            : "100%",
+          transition: isMobile
+            ? "none"
+            : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
         }}
         className="relative overflow-hidden border-t border-border/40 mx-auto mt-5"
       >

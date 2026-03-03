@@ -10,25 +10,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight } from "lucide-react";
 import { useDarkContext } from "./DarkContext";
 import { Footer } from "./Footer";
+import { useMenuMetrics } from "../lib/utils";
 
 export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { lang } = useDarkContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [menuWidth, setMenuWidth] = useState(0);
-  useEffect(() => {
-    const updateMenuWidth = () => {
-      const menuEl = document.querySelector(
-        ".staggered-menu-panel",
-      ) as HTMLElement | null;
-      if (menuEl) setMenuWidth(menuEl.offsetWidth);
-    };
-
-    updateMenuWidth();
-    window.addEventListener("resize", updateMenuWidth);
-    return () => window.removeEventListener("resize", updateMenuWidth);
-  }, []);
+  const { menuWidth, isMobile } = useMenuMetrics();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,10 +51,10 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="contact"
       ref={ref}
-      className="flex justify-center items-center min-h-screen px-6 transition-all duration-500"
+      className="flex justify-center items-center min-h-screen px-4 sm:px-6 transition-all duration-500"
     >
       <motion.div
-        animate={{ x: isMenuOpen ? -menuWidth / 500 : 0 }}
+        animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 500 : 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="flex flex-col justify-center mx-auto"
       >
@@ -80,13 +69,19 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
           >
             <div
               style={{
-                width: isMenuOpen ? `calc(140% - ${menuWidth}px)` : "100%",
-                transition: "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+                width: isMobile
+                  ? "100%"
+                  : isMenuOpen
+                  ? `calc(140% - ${menuWidth}px)`
+                  : "100%",
+                transition: isMobile
+                  ? "none"
+                  : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
               }}
               className="mx-auto h-fit flex-1 justify-center items-center"
             >
               <motion.div
-                animate={{ x: isMenuOpen ? -menuWidth / 2 : 0 }}
+                animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}
                 transition={{
                   duration: 0.6,
                   ease: [0.22, 1, 0.36, 1],
@@ -110,17 +105,17 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                         transition={{ duration: 0.3, ease: "easeOut" }}
                         className=""
                       >
-                        <span className="text-sm uppercase tracking-[0.3em] text-foreground/70 mb-2 pt-30">
+                        <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-foreground/70 mb-2 pt-30">
                           {lang === "en" ? "Contact" : "Холбогдох"}
                         </span>
-                        <h2 className="text-4xl md:text-5xl mt-2 font-light tracking-tight text-foreground">
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl mt-2 font-light tracking-tight text-foreground">
                           {lang === "en" ? "Let's work" : "Хамтдаа"}
 
                           <span className="italic">
                             {lang === "en" ? " together" : " Ажиллацгаая"}
                           </span>
                         </h2>
-                        <p className="mt-6 text-lg text-foreground/70 font-light max-w-xl mx-auto">
+                        <p className="mt-4 sm:mt-6 text-sm sm:text-lg text-foreground/70 font-light max-w-xl mx-auto">
                           {lang === "en"
                             ? "Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as possible."
                             : "Төслийн санаа байна уу? Бид таныг сонсохыг хүсэж байна. Мессежээ илгээхэд бид аль болох хурдан хариу өгнө."}
@@ -140,7 +135,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                     onSubmit={handleSubmit}
                     className="space-y-3 -mt-13"
                   >
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                       <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}

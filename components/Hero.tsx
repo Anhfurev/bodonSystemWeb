@@ -4,41 +4,31 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDarkContext } from "./DarkContext";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { useMenuMetrics } from "@/lib/utils";
 
 export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
   const { lang } = useDarkContext();
   const ref = useRef(null);
-  const [menuWidth, setMenuWidth] = useState(0);
+   const { menuWidth, isMobile } = useMenuMetrics();
 
-  useEffect(() => {
-    const updateMenuWidth = () => {
-      const menuEl = document.querySelector(
-        ".staggered-menu-panel",
-      ) as HTMLElement | null;
-      if (menuEl) setMenuWidth(menuEl.offsetWidth);
-    };
-
-    updateMenuWidth();
-    window.addEventListener("resize", updateMenuWidth);
-    return () => window.removeEventListener("resize", updateMenuWidth);
-  }, []);
+ 
 
   return (
     <section
       id="home"
       ref={ref}
-      className=" min-h-screen flex flex-col justify-center items-center overflow-auto"
+      className=" min-h-screen overflow-hidden flex flex-col justify-center items-center"
     >
-      <div className="max-w-7xl xl:max-w-4xl my-auto  mx-auto px-6">
+      <div className="max-w-7xl xl:max-w-4xl my-auto mx-auto px-4 sm:px-6">
         <motion.div
-          animate={{ x: isMenuOpen ? -menuWidth / 2 : 0 }}
+          animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}
           transition={{
             duration: 0.6,
             ease: [0.22, 1, 0.36, 1],
             delay: isMenuOpen ? 0 : 0.1,
           }}
-          className="min-h-screen flex flex-col justify-center"
+          className="min-h-screen flex flex-col justify-center pt-10 sm:pt-0"
         >
           <div className="max-w-5xl text-center pt-20">
             <motion.div
@@ -68,7 +58,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
                 </AnimatePresence>
               </motion.div>
 
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground leading-[0.95]">
+              <h1 className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground leading-[0.95]">
                 <motion.span
                   className="block"
                   initial={{ opacity: 0, y: 40 }}
@@ -113,7 +103,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
               </h1>
 
               <motion.div
-                className="mt-8 md:mt-12 text-lg md:text-xl text-foreground/70 max-w-xl mx-auto font-light leading-relaxed"
+                className="mt-6 sm:mt-8 md:mt-12 text-base sm:text-lg md:text-xl text-foreground/70 max-w-xl mx-auto font-light leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7, duration: 0.8 }}
@@ -135,7 +125,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
               </motion.div>
 
               <motion.div
-                className="mt-12 flex flex-col sm:flex-row gap-4 justify-center"
+                className="mt-8 sm:mt-12 flex flex-col gap-2 sm:gap-4 sm:flex-row justify-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.8 }}
@@ -182,7 +172,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
               </motion.div>
             </motion.div>{" "}
             <motion.div
-              className="bottom-10 left-3/3 z-50 relative -translate-x-1/2 mt-40"
+              className="bottom-10 left-3/3 z-50 relative -translate-x-1/2 mt-20 sm:mt-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.8 }}

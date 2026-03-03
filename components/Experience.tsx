@@ -12,6 +12,7 @@ import {
   Monitor,
   X,
 } from "lucide-react";
+import { useMenuMetrics } from "@/lib/utils";
 interface TimelineItem {
   year: string;
   title: { en: string; mn: string };
@@ -62,10 +63,10 @@ function TimelineNode({
         <motion.div
           layoutId={`card-container-${index}`}
           onClick={() => onClick(item)}
-          className="group relative p-8 md:p-10 bg-background/30 border border-border/50 rounded-2xl hover:border-foreground/20 cursor-pointer hover:bg-background/50 backdrop-blur-sm"
+          className="group relative p-6 sm:p-8 md:p-10 bg-background/30 border border-border/50 rounded-2xl hover:border-foreground/20 cursor-pointer hover:bg-background/50 backdrop-blur-sm"
           whileHover={{ scale: 1.02 }}
         >
-          <div className="flex items-start gap-6">
+          <div className="flex items-start gap-3 sm:gap-6 flex-col sm:flex-row">
             <motion.div
               layoutId={`card-icon-${index}`}
               className="p-3 rounded-xl bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-500 shrink-0"
@@ -127,25 +128,15 @@ function TimelineNode({
 }
 
 export function Journey({ isMenuOpen }: JourneyProps) {
+  
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { lang } = useDarkContext();
-  const [menuWidth, setMenuWidth] = useState(0);
+   const { menuWidth, isMobile } = useMenuMetrics();
   const [selectedItem, setSelectedItem] = useState<TimelineItem | null>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
-  useEffect(() => {
-    const updateMenuWidth = () => {
-      const menuEl = document.querySelector(
-        ".staggered-menu-panel",
-      ) as HTMLElement | null;
-      if (menuEl) setMenuWidth(menuEl.offsetWidth);
-    };
-
-    updateMenuWidth();
-    window.addEventListener("resize", updateMenuWidth);
-    return () => window.removeEventListener("resize", updateMenuWidth);
-  }, []);
+ 
 
   const timeline: TimelineItem[] = React.useMemo(
     () => [
@@ -257,13 +248,19 @@ export function Journey({ isMenuOpen }: JourneyProps) {
     >
       <div
         style={{
-          width: isMenuOpen ? `calc(100% - ${menuWidth}px)` : "100%",
-          transition: "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+          width: isMobile
+            ? "100%"
+            : isMenuOpen
+            ? `calc(100% - ${menuWidth}px)`
+            : "100%",
+          transition: isMobile
+            ? "none"
+            : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
         }}
-        className="max-w-7xl xl:max-w-7x  xl mx-auto px-6"
+        className="max-w-7xl xl:max-w-7x xl mx-auto px-4 sm:px-6"
       >
         <motion.div
-          animate={{ x: isMenuOpen ? -menuWidth / 2 : 0 }}
+          animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}
           transition={{
             duration: 0.6,
             ease: [0.22, 1, 0.36, 1],
@@ -271,7 +268,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
           }}
           className="min-h-screen flex flex-col justify-center py-20"
         >
-          <div className="mx-auto text-center mb-16">
+          <div className="mx-auto text-center mb-12 sm:mb-16">
             <AnimatePresence mode="wait">
               <motion.div
                 key={lang}
@@ -280,10 +277,10 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <span className="text-sm uppercase tracking-[0.3em] text-foreground/70 mb-6 block">
+                <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-foreground/70 mb-6 block">
                   {lang === "en" ? "Timeline" : "Цаг хугацаа"}
                 </span>
-                <h2 className="text-4xl md:text-5xl font-light mt-6 tracking-tight mb-0 text-foreground">
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-light mt-6 tracking-tight mb-0 text-foreground">
                   {lang === "en" ? "Our " : "Бидний "}
                   <span className="italic">
                     {lang === "en" ? "Experience" : "Туршлага"}
@@ -311,7 +308,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 />
               </div>
 
-              <div className="flex flex-col gap-10 md:gap-14">
+              <div className="flex flex-col gap-6 sm:gap-10 md:gap-14">
                 {timeline.map((item, index) => (
                   <TimelineNode
                     key={index}
@@ -439,7 +436,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
+              className="fixed inset-0 z-60 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
               onClick={() => setSelectedPhoto(null)}
             >
               <motion.div
