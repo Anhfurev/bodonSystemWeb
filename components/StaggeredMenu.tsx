@@ -11,6 +11,7 @@ import React, {
 import { gsap } from "gsap";
 import Image from "next/image";
 import { useDarkContext } from "./DarkContext";
+import { useMenuMetrics } from "@/lib/utils";
 
 export interface StaggeredMenuItem {
   label: string;
@@ -63,6 +64,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 }: StaggeredMenuProps) => {
   const [dark, setDark] = useState(false);
   const [logo, setLogo] = useState(logoUrl);
+  const { isMobile } = useMenuMetrics();
   const [open, setOpen] = useState(false);
   const { lang } = useDarkContext();
   const menuLabel = lang === "en" ? "Menu" : "Цэс";
@@ -528,7 +530,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         </div>
 
         <header
-          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between  p-[2em]  bg-transparent pointer-events-none z-20"
+          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] px-[1em] sm:px-[2em]  bg-transparent pointer-events-none z-20"
           aria-label="Main navigation header"
         >
           <a href="#home">
@@ -703,6 +705,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   left: 0;
   width: 100%;
   display: flex;
+ 
+  
   align-items: center;
   justify-content: space-between;
   background: transparent;
@@ -807,7 +811,7 @@ color: ${isDark ? "black" : "white"} !important;
   right: 0;
   width: clamp(220px, 35vw, 410px);
   height: 100%;
-  background:${isDark ? "black" : "#e4e4e5"} !important;
+  background:${isMobile ? (isDark ? "black" : "#e4e4e5") : isDark ? "black" : "#fff"} !important;
   display: flex;
   flex-direction: column;
   padding: 6em 0em 2em 1em; /* top padding stays for design */

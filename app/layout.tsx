@@ -13,6 +13,7 @@ import { Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/Footer";
 import { menuItems } from "@/lib/mock";
+import { useMenuMetrics } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
   const [textColor, setTextColor] = useState("#000");
   const [textColorSc, setTextColorSc] = useState("#000");
   const [lang, setLang] = useState<"en" | "mn">("en");
+  const {isMobile } = useMenuMetrics();
   function isItDark(dark: boolean) {
     localStorage.setItem("isDark", dark ? "true" : "false");
     setIsDark(dark);
@@ -73,12 +75,12 @@ export default function RootLayout({
               <div className="flex">
                 <AnimatedThemeToggler
                   isItDark={isItDark}
-                  className="z-10 fixed right-28 top-10"
+                  className={`z-10 fixed top-10 ${isMobile ? "right-23" : "right-28"}`}
                   color="#000"
                 />
                 <Button
                   onClick={Changelanguage}
-                  className="z-10 fixed right-36 top-8.5 bg-foreground "
+                  className={`z-10 fixed ${isMobile ? "right-30" : "right-36"} top-8.5 bg-foreground`}
                 >
                   <Languages size={40} strokeWidth={1.75} />
                 </Button>

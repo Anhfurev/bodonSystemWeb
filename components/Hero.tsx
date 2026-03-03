@@ -171,23 +171,23 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
                 </AnimatePresence>
               </motion.div>
             </motion.div>{" "}
-            <motion.div
-              className="bottom-10 left-3/3 z-50 relative -translate-x-1/2 mt-20 sm:mt-40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-            >
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <ArrowDown className="h-5 w-5 text-foreground/70" />
-              </motion.div>
-            </motion.div>
+         <motion.div
+  className="mt-20 sm:mt-40 flex justify-center w-full z-50"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 1.2, duration: 0.8 }}
+>
+  <motion.div
+    animate={{ y: [0, 8, 0] }}
+    transition={{
+      duration: 1.5,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+  >
+    <ArrowDown className="h-5 w-5 text-foreground/70" />
+  </motion.div>
+</motion.div>
           </div>
         </motion.div>
       </div>
