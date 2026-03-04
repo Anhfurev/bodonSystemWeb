@@ -62,7 +62,7 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="techstack"
       ref={ref}
-      className="px-4 sm:px-6 min-h-screen flex flex-col justify-center"
+      className="px-4 sm:px-6 snap-start h-dvh flex flex-col justify-center"
     >
       <div
         className="mx-auto w-full"
@@ -70,8 +70,8 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
           width: isMobile
             ? "100%"
             : isMenuOpen
-            ? `calc(100% - ${menuWidth}px)`
-            : "100%",
+              ? `calc(100% - ${menuWidth}px)`
+              : "100%",
           transition: isMobile
             ? "none"
             : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",

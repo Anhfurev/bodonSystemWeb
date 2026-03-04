@@ -16,7 +16,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="home"
       ref={ref}
-      className="relative min-h-screen h-dvh flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen snap-start h-dvh flex items-center justify-center overflow-hidden"
     >
       <div className="w-full max-w-7xl xl:max-w-4xl px-4 sm:px-6">
         <motion.div

@@ -124,8 +124,13 @@
     @apply bg-background text-foreground;
   }
 }
+html,
+body {
+  overflow-x: hidden;
+}
 
-::view-transition-old(root), ::view-transition-new(root) {
-    animation: none;
-    mix-blend-mode: normal;
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }

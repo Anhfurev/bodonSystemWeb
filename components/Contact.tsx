@@ -51,7 +51,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="contact"
       ref={ref}
-      className="flex justify-center items-center min-h-screen px-4 sm:px-6 transition-all duration-500"
+      className="flex justify-center snap-start items-center h-dvh px-4 sm:px-6 transition-all duration-500"
     >
       <motion.div
         animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 500 : 0 }}
@@ -72,8 +72,8 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                 width: isMobile
                   ? "100%"
                   : isMenuOpen
-                  ? `calc(140% - ${menuWidth}px)`
-                  : "100%",
+                    ? `calc(140% - ${menuWidth}px)`
+                    : "100%",
                 transition: isMobile
                   ? "none"
                   : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",

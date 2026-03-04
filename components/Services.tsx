@@ -50,7 +50,7 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
   return (
     <section
       id="services"
-      className="px-4 sm:px-6 min-h-screen md:h-screen bg-transparent flex justify-center items-center"
+      className="px-4 sm:px-6 snap-start z-10  h-dvh md:h-screen bg-transparent flex justify-center items-center"
       ref={ref}
     >
       <div
@@ -59,8 +59,8 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
           width: isMobile
             ? "100%"
             : isMenuOpen
-            ? `calc(100% - ${menuWidth}px)`
-            : "100%",
+              ? `calc(100% - ${menuWidth}px)`
+              : "100%",
           transition: isMobile
             ? "none"
             : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
@@ -91,7 +91,7 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   className=""
                 >
-              <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-foreground/70 mb-6">
+                  <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-foreground/70 mb-6">
                     {lang === "en" ? "Services" : "Үйл ажиллагаа"}
                   </span>
                   <h2 className="text-2xl sm:text-3xl md:text-5xl font-light mt-6 tracking-tight mb-0 text-foreground">

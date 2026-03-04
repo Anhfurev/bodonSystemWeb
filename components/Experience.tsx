@@ -128,15 +128,12 @@ function TimelineNode({
 }
 
 export function Journey({ isMenuOpen }: JourneyProps) {
-  
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { lang } = useDarkContext();
-   const { menuWidth, isMobile } = useMenuMetrics();
+  const { menuWidth, isMobile } = useMenuMetrics();
   const [selectedItem, setSelectedItem] = useState<TimelineItem | null>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
-
- 
 
   const timeline: TimelineItem[] = React.useMemo(
     () => [
@@ -244,15 +241,15 @@ export function Journey({ isMenuOpen }: JourneyProps) {
     <section
       id="experience"
       ref={ref}
-      className="min-h-screen flex flex-col justify-center overflow-auto transition-transform duration-500"
+      className="h-dvh snap-start flex flex-col justify-center overflow-auto transition-transform duration-500"
     >
       <div
         style={{
           width: isMobile
             ? "100%"
             : isMenuOpen
-            ? `calc(100% - ${menuWidth}px)`
-            : "100%",
+              ? `calc(100% - ${menuWidth}px)`
+              : "100%",
           transition: isMobile
             ? "none"
             : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
