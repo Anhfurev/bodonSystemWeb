@@ -46,7 +46,7 @@ function Polygon({
         <meshStandardMaterial
           color={color}
           transparent
-          opacity={0.1}
+          opacity={0.07}
           wireframe
         />
       </mesh>
