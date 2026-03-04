@@ -14,7 +14,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="about"
       ref={ref}
-      className="pt-10 sm:pt-20 max-w-350 overflow-hidden mx-auto px-4 sm:px-6 flex justify-center min-h-screen"
+      className="pt-6 sm:pt-10 md:pt-20 max-w-full sm:max-w-350 overflow-hidden mx-auto px-3 sm:px-4 md:px-6 flex justify-center min-h-auto sm:min-h-screen"
     >
       <div
         className="mx-auto my-auto"
@@ -22,8 +22,8 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
           width: isMobile
             ? "100%"
             : isMenuOpen
-            ? `calc(100% - ${menuWidth}px)`
-            : "100%",
+              ? `calc(100% - ${menuWidth}px)`
+              : "100%",
           transition: isMobile
             ? "none"
             : `width 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${
@@ -40,13 +40,13 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
           }}
           className="flex flex-col justify-center"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-16 md:gap-24 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 md:gap-16 lg:gap-24 items-start">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="uppercase tracking-[0.3em] text-foreground/70 mb-4 sm:mb-6 block text-[clamp(0.65rem,1.5vw,1rem)]">
+              <span className="uppercase tracking-[0.3em] text-foreground/70 mb-2 sm:mb-4 md:mb-6 block text-[clamp(0.65rem,1.5vw,1rem)]">
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={lang}
@@ -117,7 +117,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
             </motion.div>
           </div>
 
-          <div className="mt-12 sm:mt-16 md:mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
+          <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 md:gap-12">
             {[
               {
                 number: "01",
@@ -153,7 +153,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
                   delay: 0.4 + i * 0.1,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="group"
+                className="group pb-4 sm:pb-6"
               >
                 <AnimatePresence mode="wait">
                   <motion.div

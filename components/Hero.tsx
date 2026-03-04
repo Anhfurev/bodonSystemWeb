@@ -26,7 +26,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
             ease: [0.22, 1, 0.36, 1],
             delay: isMenuOpen ? 0 : 0.1,
           }}
-          className="min-h-screen flex flex-col justify-center pt-10 sm:pt-0"
+          className="h-full flex flex-col justify-center"
         >
           <div className="max-w-5xl text-center pt-20">
             <motion.div
