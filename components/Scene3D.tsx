@@ -2,14 +2,14 @@
 /* eslint-disable react-hooks/immutability */
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import type { Mesh, Group } from "three";
 import * as THREE from "three";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
+
 import { useDarkContext } from "./DarkContext";
 import LightRays from "./LightRays";
 import { motion } from "motion/react";

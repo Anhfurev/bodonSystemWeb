@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useDarkContext } from "./DarkContext";
 import {
@@ -71,7 +72,7 @@ function TimelineNode({
           <div className="flex items-start gap-2 sm:gap-3 md:gap-4 flex-col sm:flex-row">
             <motion.div
               layoutId={isMobile ? undefined : `card-icon-${index}`}
-              className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-500 shrink-0 flex-shrink-0"
+              className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-500 shrink-0"
             >
               <Icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </motion.div>
@@ -243,7 +244,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
     <section
       id="experience"
       ref={ref}
-      className="h-auto sm:h-dvh snap-start flex flex-col justify-start sm:justify-center overflow-x-hidden transition-transform duration-500 pt-2 sm:pt-0 pb-4 sm:pb-0"
+      className="h-auto sm:h-dvh snap-start flex flex-col overflow-y-visible justify-start sm:justify-center overflow-x-hidden transition-transform duration-500 pt-2 sm:pt-0 pb-4 sm:pb-0"
     >
       <div
         style={{
@@ -256,7 +257,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
             ? "none"
             : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
         }}
-        className="max-w-7xl xl:max-w-7x xl mx-auto px-3 sm:px-4 md:px-6 mt-15 sm:mt-0 w-full"
+        className="max-w-7xl xl:max-w-7x mx-auto px-3 sm:px-4 md:px-6 mt-15 sm:mt-0 w-full"
       >
         <motion.div
           animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}

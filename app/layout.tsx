@@ -96,7 +96,7 @@ export default function RootLayout({
                   openMenuButtonColor="#000 dark:#fff"
                   changeMenuColorOnOpen={true}
                   colors={[`${textColor}`, `${textColorSc}`]}
-                  logoUrl={"/Lblack.png"}
+                  logoUrl={isDark ? "/Lblack.png" : "/Lwhite.png"}
                   accentColor="#background"
                   isFixed={true}
                   onMenuOpen={() => setIsMenuOpen(true)}

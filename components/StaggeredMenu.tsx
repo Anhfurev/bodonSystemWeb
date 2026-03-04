@@ -65,7 +65,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   isDark = true,
 }: StaggeredMenuProps) => {
   const [dark, setDark] = useState(false);
-  const [logo, setLogo] = useState(logoUrl);
   const { isMobile } = useMenuMetrics();
   const [open, setOpen] = useState(false);
   const { lang } = useDarkContext();
@@ -96,15 +95,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const busyRef = useRef(false);
 
   const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null);
-
-  useEffect(() => {
-    console.log("isDark in StaggeredMenu:", isDark);
-    if (isDark) {
-      setLogo("/Lblack.png");
-    } else {
-      setLogo("/Lwhite.png");
-    }
-  }, [isDark, logoUrl]);
 
   useEffect(() => {
     if (prevLangRef.current !== lang) {
@@ -541,7 +531,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
               aria-label="Logo"
             >
               <Image
-                src={logo || "/src/assets/logos/reactbits-gh-white.svg"}
+                src={logoUrl || "/src/assets/logos/reactbits-gh-white.svg"}
                 alt="Logo"
                 className="sm-logo-img block h-8 w-full object-contain"
                 draggable={false}
@@ -715,7 +705,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   align-items: center;
   justify-content: space-between;
   background: transparent;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(7px);
   pointer-events: none;
   z-index: 20;
 }
