@@ -603,7 +603,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           style={{ WebkitBackdropFilter: "blur(12px)" }}
           aria-hidden={!open}
         >
-          <div className="sm-panel-inner flex-1 flex flex-col gap-5">
+          <div className="sm-panel-inner flex-1 flex flex-col gap-5 justify-between">
             <ul
               className="sm-panel-list list-none m-0 p-0 flex flex-col gap-2"
               role="list"
@@ -641,7 +641,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
             {displaySocials && socialItems && socialItems.length > 0 && (
               <div
-                className="sm-socials mt-[calc(100%-40%)] sm:mt-auto pt-8 flex flex-col gap-3"
+                className="sm-socials  pt-8 flex flex-col gap-3"
                 aria-label="Social links"
               >
                 <h3 className="sm-socials-title m-0 text-base font-medium text-(--sm-accent,#ff0000)">
