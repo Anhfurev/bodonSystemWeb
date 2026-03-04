@@ -35,7 +35,7 @@ export const menuItems = [
 export const socialItems = [
   {
     label: "Gmail",
-    link: "https://mail.google.com/mail/u/1/#inbox?compose=CllgCJqXPHhGJVVBSXJsLSQPgNhNdVMzmSJCRHVpGKWGNQLCnRDgjjSBjRdcWSTmwZxWJKQRhsB",
+    link: "https://mail.google.com/mail/?view=cm&fs=1&to=bodonsystem@gmail.com",
   },
   { label: "GitHub", link: "https://github.com/anhfurev" },
   {
