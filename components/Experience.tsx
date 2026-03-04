@@ -52,7 +52,7 @@ function TimelineNode({
       animate={nodeInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{
         duration: 0.7,
-        delay: index * 0.08,
+        delay: isMobile ? index * 0.02 : index * 0.08,
         ease: [0.22, 1, 0.36, 1],
       }}
       className={`relative flex items-center gap-6 md:gap-10 ${
@@ -333,7 +333,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
           </AnimatePresence>
         </motion.div>
 
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
           {selectedItem && (
             <>
               <motion.div
@@ -407,7 +407,10 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2, duration: 0.4 }}
+                      transition={{
+                        delay: isMobile ? 0.05 : 0.2,
+                        duration: 0.4,
+                      }}
                       className="prose dark:prose-invert max-w-none"
                     >
                       <p className="text-foreground/70 leading-relaxed text-[16px] sm:text-[18px] font-light">
@@ -421,7 +424,10 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.4 }}
+                        transition={{
+                          delay: isMobile ? 0.08 : 0.3,
+                          duration: 0.4,
+                        }}
                         className="flex flex-row gap-4"
                       >
                         {selectedItem.photos.map((photo, i) => (
@@ -447,7 +453,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
           )}
         </AnimatePresence>
 
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
           {selectedPhoto && (
             <motion.div
               initial={{ opacity: 0 }}
