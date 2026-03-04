@@ -31,12 +31,14 @@ function TimelineNode({
   index,
   lang,
   onClick,
+  isMobile,
 }: {
   item: TimelineItem;
   index: number;
   lang: "en" | "mn";
   isInView: boolean;
   onClick: (item: TimelineItem) => void;
+  isMobile: boolean;
 }) {
   const isEven = index % 2 === 0;
   const nodeRef = useRef(null);
@@ -61,14 +63,14 @@ function TimelineNode({
         className={`flex-1 ${isEven ? "md:text-right" : "md:text-left"} text-left`}
       >
         <motion.div
-          layoutId={`card-container-${index}`}
+          layoutId={isMobile ? undefined : `card-container-${index}`}
           onClick={() => onClick(item)}
           className="group relative p-3 sm:p-4 md:p-6 lg:p-8 bg-background/30 border border-border/50 rounded-lg sm:rounded-xl md:rounded-2xl hover:border-foreground/20 cursor-pointer hover:bg-background/50 backdrop-blur-sm"
           whileHover={{ scale: 1.02 }}
         >
           <div className="flex items-start gap-2 sm:gap-3 md:gap-4 flex-col sm:flex-row">
             <motion.div
-              layoutId={`card-icon-${index}`}
+              layoutId={isMobile ? undefined : `card-icon-${index}`}
               className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-500 shrink-0 flex-shrink-0"
             >
               <Icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
@@ -84,7 +86,7 @@ function TimelineNode({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.25 }}
-                  className="text-sm sm:text-base md:text-lg text-left font-light text-foreground mb-1 sm:mb-2"
+                  className="text-[14px] sm:text-base md:text-lg text-left font-light text-foreground mb-1 sm:mb-2"
                 >
                   {item.title[lang]}
                 </motion.h3>
@@ -241,7 +243,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
     <section
       id="experience"
       ref={ref}
-      className="h-fit sm:h-dvh snap-start flex flex-col justify-start sm:justify-center overflow-auto transition-transform duration-500 pt-2 sm:pt-0 pb-4 sm:pb-0"
+      className="h-auto sm:h-dvh snap-start flex flex-col justify-start sm:justify-center overflow-y-auto overflow-x-hidden transition-transform duration-500 pt-2 sm:pt-0 pb-4 sm:pb-0"
     >
       <div
         style={{
@@ -254,7 +256,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
             ? "none"
             : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
         }}
-        className="max-w-7xl xl:max-w-7x xl mx-auto px-3 sm:px-4 md:px-6 mt-0 sm:mt-0"
+        className="max-w-7xl xl:max-w-7x xl mx-auto px-3 sm:px-4 md:px-6 mt-0 sm:mt-0 w-full"
       >
         <motion.div
           animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}
@@ -263,9 +265,9 @@ export function Journey({ isMenuOpen }: JourneyProps) {
             ease: [0.22, 1, 0.36, 1],
             delay: isMenuOpen ? 0 : 0.1,
           }}
-          className="min-h-auto sm:min-h-screen flex flex-col justify-start sm:justify-center py-4 sm:py-8 md:py-12 lg:py-16"
+          className="min-h-auto sm:min-h-screen flex flex-col justify-start sm:justify-center py-4 sm:py-8 md:py-12 lg:py-16 w-full"
         >
-          <div className="mx-auto text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12">
+          <div className="mx-auto text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12 w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={lang}
@@ -294,7 +296,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="relative"
+              className="relative w-full"
             >
               <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 hidden md:block">
                 <motion.div
@@ -305,7 +307,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 />
               </div>
 
-              <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-10">
+              <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-10 w-full">
                 {timeline.map((item, index) => (
                   <TimelineNode
                     key={index}
@@ -313,6 +315,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                     index={index}
                     lang={lang}
                     isInView={isInView}
+                    isMobile={isMobile}
                     onClick={setSelectedItem}
                   />
                 ))}
@@ -338,25 +341,38 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+                transition={{ duration: isMobile ? 0.15 : 0.3 }}
+                className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm"
                 onClick={() => setSelectedItem(null)}
               />
               <motion.div
                 key="modal-wrapper"
                 className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
-                initial={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: isMobile ? 0.15 : 0.3 }}
               >
                 <motion.div
-                  layoutId={`card-container-${timeline.indexOf(selectedItem)}`}
+                  layoutId={
+                    !isMobile
+                      ? `card-container-${timeline.indexOf(selectedItem)}`
+                      : undefined
+                  }
                   onClick={(e) => e.stopPropagation()}
-                  transition={{
-                    duration: 0.4,
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30,
-                  }}
+                  initial={{ opacity: 0, scale: isMobile ? 0.95 : 1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: isMobile ? 0.95 : 1 }}
+                  transition={
+                    isMobile
+                      ? { duration: 0.2, ease: "easeOut" }
+                      : {
+                          duration: 0.4,
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 30,
+                        }
+                  }
                   className="bg-background border border-border/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 max-w-5xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative pointer-events-auto"
                 >
                   <button
@@ -368,8 +384,12 @@ export function Journey({ isMenuOpen }: JourneyProps) {
 
                   <div className="flex items-start gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 pr-6 sm:pr-8">
                     <motion.div
-                      layoutId={`card-icon-${timeline.indexOf(selectedItem)}`}
-                      className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-muted shrink-0 text-foreground flex-shrink-0"
+                      layoutId={
+                        !isMobile
+                          ? `card-icon-${timeline.indexOf(selectedItem)}`
+                          : undefined
+                      }
+                      className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-muted shrink-0 text-foreground"
                     >
                       <selectedItem.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                     </motion.div>
@@ -377,7 +397,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                       <div className="text-xs sm:text-xs md:text-sm font-mono text-foreground/70 mb-0.5 sm:mb-1">
                         {selectedItem.year}
                       </div>
-                      <h3 className="text-base sm:text-lg md:text-2xl font-light text-foreground">
+                      <h3 className="text-[14px] sm:text-lg md:text-2xl font-light text-foreground">
                         {selectedItem.title[lang]}
                       </h3>
                     </div>
@@ -390,7 +410,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                       transition={{ delay: 0.2, duration: 0.4 }}
                       className="prose dark:prose-invert max-w-none"
                     >
-                      <p className="text-foreground/70 leading-relaxed text-lg font-light">
+                      <p className="text-foreground/70 leading-relaxed text-[16px] sm:text-[18px] font-light">
                         {selectedItem.details
                           ? selectedItem.details[lang]
                           : selectedItem.desc[lang]}
@@ -433,7 +453,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-60 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
+              className="fixed inset-0 z-60 flex items-center justify-center bg-white/80 dark:bg-black/90 backdrop-blur-md p-4"
               onClick={() => setSelectedPhoto(null)}
             >
               <motion.div
@@ -448,7 +468,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 />
                 <button
                   onClick={() => setSelectedPhoto(null)}
-                  className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white transition-colors"
+                  className="absolute -top-12 right-0 p-2 text-foreground/70 hover:text-foreground transition-colors"
                 >
                   <X className="w-8 h-8 " />
                 </button>

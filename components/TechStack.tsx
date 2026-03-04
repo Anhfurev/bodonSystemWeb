@@ -141,8 +141,8 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
                 logos={technologies}
                 speed={40}
                 direction="left"
-                logoHeight={isMobile ? 40 : 60}
-                gap={80}
+                logoHeight={isMobile ? 30 : 60}
+                gap={isMobile ? 40 : 80}
               />
             </div>
           </div>
