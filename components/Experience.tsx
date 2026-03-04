@@ -241,7 +241,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
     <section
       id="experience"
       ref={ref}
-      className="h-auto sm:h-dvh snap-start flex flex-col justify-start sm:justify-center overflow-auto transition-transform duration-500 pt-2 sm:pt-0 pb-4 sm:pb-0"
+      className="h-fit sm:h-dvh snap-start flex flex-col justify-start sm:justify-center overflow-auto transition-transform duration-500 pt-2 sm:pt-0 pb-4 sm:pb-0"
     >
       <div
         style={{

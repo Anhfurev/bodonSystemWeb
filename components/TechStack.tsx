@@ -62,7 +62,7 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="techstack"
       ref={ref}
-      className="px-3 sm:px-4 md:px-6 snap-start h-dvh flex flex-col justify-start sm:justify-center pt-2 sm:pt-0 pb-4 sm:pb-0"
+      className="px-3 sm:px-4 md:px-6 snap-start h-fit sm:h-screen flex flex-col justify-start sm:justify-center pt-2 sm:pt-0 pb-4 sm:pb-0"
     >
       <div
         className="mx-auto w-full mt-18 sm:mt-0"

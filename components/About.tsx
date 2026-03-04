@@ -14,7 +14,7 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="about"
       ref={ref}
-      className="pt-0 sm:pt-6 md:pt-10 lg:pt-20 snap-start max-w-full sm:max-w-350 overflow-hidden mx-auto px-3 sm:px-4 md:px-6 flex items-start sm:items-center sm:justify-center h-dvh md:h-screen pb-2 sm:pb-0"
+      className="pt-0 sm:pt-6 md:pt-10 lg:pt-20 snap-start max-w-full sm:max-w-350 overflow-hidden mx-auto px-3 sm:px-4 md:px-6 flex items-start sm:items-center sm:justify-center h-fit md:h-screen pb-2 sm:pb-0"
     >
       <div
         className="mx-auto sm:my-auto w-full sm:w-auto"

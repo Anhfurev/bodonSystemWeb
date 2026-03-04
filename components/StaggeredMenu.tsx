@@ -535,7 +535,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] py-[1em] sm:py-[2em] px-[1em] sm:px-[2em]  bg-transparent pointer-events-none z-20"
           aria-label="Main navigation header"
         >
-          <a href="#home">
+          <a href="#home" onClick={() => isMobile && closeMenu()}>
             <div
               className="sm-logo flex items-center select-none pointer-events-auto"
               aria-label="Logo"
@@ -620,6 +620,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                       className="sm-panel-item relative text-black font-semibold sm:text-[4rem] text-[3rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
                       href={it.link}
                       aria-label={it.ariaLabel}
+                      onClick={() => isMobile && closeMenu()}
                     >
                       <span className="sm-panel-itemLabel inline-block origin-[50%_100%] will-change-transform">
                         {lang === "en" ? it.label : it.Mon}
@@ -660,6 +661,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         target="_blank"
                         rel="noopener noreferrer"
                         className="sm-socials-link text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-0.5 transition-[color,opacity] duration-300 ease-linear"
+                        onClick={() => isMobile && closeMenu()}
                       >
                         {s.label}
                       </a>
