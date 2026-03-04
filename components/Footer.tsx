@@ -28,13 +28,13 @@ export function Footer({
           width: isMobile
             ? "100%"
             : isMenuOpen
-            ? `calc(140% - ${menuWidth}px)`
-            : "100%",
+              ? `calc(140% - ${menuWidth}px)`
+              : "100%",
           transition: isMobile
             ? "none"
             : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
         }}
-        className="relative overflow-hidden border-t border-border/40 mx-auto mt-5"
+        className="relative overflow-hidden border-t border-border/40 mx-auto mt-2 sm:mt-5"
       >
         <div className="pointer-events-none absolute inset-0">
           <svg
@@ -66,31 +66,31 @@ export function Footer({
           </svg>
         </div>
 
-        <div className="relative z-10 mx-auto max-w-6xl px-6 py-6">
-          <div className="flex justify-between">
-            <div className="flex items-start gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted/50">
-                <Building2 className="h-4.5 w-4.5" />
+        <div className="relative z-10 mx-auto max-w-6xl px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6">
+          <div className="flex flex-col sm:flex-row sm:justify-between gap-3 sm:gap-4 md:gap-6">
+            <div className="flex items-start gap-2 sm:gap-3">
+              <div className="flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-muted/50 flex-shrink-0">
+                <Building2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4.5 md:w-4.5" />
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-0.5 sm:gap-1">
                 <span className="text-xs uppercase tracking-widest text-muted-foreground">
                   {lang === "en" ? "Company" : "Компани"}
                 </span>
-                <span className="text-sm text-foreground">
+                <span className="text-xs sm:text-sm text-foreground">
                   {lang === "en" ? "Bodon Systems LLC" : "“Бодон системс” ХХК"}
                 </span>
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted/50">
-                <MapPin className="h-4.5 w-4.5" />
+            <div className="flex items-start gap-2 sm:gap-3">
+              <div className="flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-muted/50 flex-shrink-0">
+                <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4.5 md:w-4.5" />
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-0.5 sm:gap-1">
                 <span className="text-xs uppercase tracking-widest text-muted-foreground">
                   {lang === "en" ? "Address" : "Хаяг"}
                 </span>
-                <span className="text-sm text-foreground">
+                <span className="text-xs sm:text-sm text-foreground">
                   {lang === "en"
                     ? "UB Tower, Bayanzurkh district"
                     : "UB Tower, Баянзүрх дүүрэг"}
@@ -98,17 +98,17 @@ export function Footer({
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted/50">
-                <Phone className="h-4.5 w-4.5" />
+            <div className="flex items-start gap-2 sm:gap-3">
+              <div className="flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-muted/50 flex-shrink-0">
+                <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4.5 md:w-4.5" />
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-0.5 sm:gap-1">
                 <span className="text-xs uppercase tracking-widest text-muted-foreground">
                   {lang === "en" ? "Contact" : "Холбоо барих"}
                 </span>
                 <a
                   href="tel:+97699343599"
-                  className="text-sm text-foreground hover:underline"
+                  className="text-xs sm:text-sm text-foreground hover:underline"
                 >
                   +976 9934 3599
                 </a>
@@ -116,9 +116,9 @@ export function Footer({
             </div>
           </div>
 
-          <div className="my-5 h-px bg-linear-to-r from-transparent via-border to-transparent" />
+          <div className="my-3 sm:my-4 md:my-5 h-px bg-linear-to-r from-transparent via-border to-transparent" />
 
-          <div className="flex flex-col gap-2 text-sm md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-2 text-xs sm:text-sm md:flex-row md:items-center md:justify-between">
             <span className="text-muted-foreground">
               © {new Date().getFullYear()}{" "}
               {lang === "en" ? "Bodon Systems LLC" : "“Бодон системс” ХХК"}

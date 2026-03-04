@@ -62,10 +62,10 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="techstack"
       ref={ref}
-      className="px-4 sm:px-6 snap-start h-dvh flex flex-col justify-center"
+      className="px-3 sm:px-4 md:px-6 snap-start h-dvh flex flex-col justify-start sm:justify-center pt-2 sm:pt-0 pb-4 sm:pb-0"
     >
       <div
-        className="mx-auto w-full"
+        className="mx-auto w-full mt-18 sm:mt-0"
         style={{
           width: isMobile
             ? "100%"
@@ -91,7 +91,7 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="text-center mb-12 sm:mb-16 md:mb-20"
+              className="text-center mb-4 sm:mb-8 md:mb-12 lg:mb-16"
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -101,10 +101,10 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-foreground/70 mb-6 block">
+                  <span className="text-xs sm:text-xs md:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] text-foreground/70 mb-2 sm:mb-4 block">
                     {lang === "en" ? "Technologies" : "Технологиуд"}
                   </span>
-                  <h2 className="text-2xl sm:text-3xl md:text-5xl font-light mt-6 tracking-tight text-foreground">
+                  <h2 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-light mt-2 sm:mt-4 tracking-tight text-foreground">
                     {lang === "en" ? "Our " : "Бидний "}{" "}
                     <span className="italic">
                       {lang === "en" ? "Tech Stack" : "Ашигладаг технологиуд"}
@@ -114,7 +114,7 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
               </AnimatePresence>
             </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16 md:mb-20">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-6 sm:mb-8 md:mb-12 lg:mb-16">
               {technologies.map((tech, i) => (
                 <motion.a
                   key={i}
@@ -124,12 +124,12 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.05 }}
-                  className="group flex items-center gap-4 p-4 rounded-2xl bg-background/40 border border-border/40 hover:border-foreground/20 hover:bg-background/60 transition-all duration-300"
+                  className="group flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl md:rounded-2xl bg-background/40 border border-border/40 hover:border-foreground/20 hover:bg-background/60 transition-all duration-300"
                 >
-                  <div className="text-2xl text-foreground/70 group-hover:text-foreground transition-colors duration-300">
+                  <div className="text-lg sm:text-xl md:text-2xl text-foreground/70 group-hover:text-foreground transition-colors duration-300 flex-shrink-0">
                     {tech.node}
                   </div>
-                  <span className="text-sm font-medium text-foreground/70 group-hover:text-foreground transition-colors duration-300">
+                  <span className="text-xs sm:text-xs md:text-sm font-medium text-foreground/70 group-hover:text-foreground transition-colors duration-300 line-clamp-1">
                     {tech.title}
                   </span>
                 </motion.a>
@@ -141,7 +141,7 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
                 logos={technologies}
                 speed={40}
                 direction="left"
-                logoHeight={60}
+                logoHeight={isMobile ? 40 : 60}
                 gap={80}
               />
             </div>

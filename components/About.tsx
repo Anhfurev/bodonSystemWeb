@@ -102,12 +102,12 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   className="space-y-1 sm:space-y-2 min-h-fit"
                 >
-                  <span className="block text-foreground/70 font-light leading-relaxed text-[15px] sm:text-sm md:text-base">
+                  <span className="block text-foreground/70 font-light leading-relaxed text-[15px] sm:text-sm md:text-[18px]">
                     {lang === "en"
                       ? "At Bodon Systems, we specialize in creating robust and efficient systems that empower businesses to thrive in the digital age."
                       : "Бодон системсийн бид дижитал эрин үед бизнесүүдийг амжилттай хөгжихөд нь дэмжих найдвартай, үр ашигтай системүүдийг бүтээхэд мэргэшсэн хамт олон."}
                   </span>
-                  <span className="block text-foreground/70 font-light leading-relaxed text-[15px] sm:text-sm md:text-base">
+                  <span className="block text-foreground/70 font-light leading-relaxed text-[15px] sm:text-sm md:text-[18px]">
                     {lang === "en"
                       ? "Our approach is built on understanding your unique needs and developing custom systems that streamline operations, boost productivity, and drive success."
                       : "Бид таны онцлог хэрэгцээг гүнзгий ойлгож, үйл ажиллагааг хялбаршуулах, бүтээмжийг нэмэгдүүлэх, амжилтыг бий болгох системүүдийг хөгжүүлэхэд тулгуурлан ажилладаг."}
@@ -164,13 +164,13 @@ export default function About({ isMenuOpen }: { isMenuOpen: boolean }) {
                     transition={{ duration: 0.3, ease: "easeOut" }}
                     className="space-y-1 sm:space-y-2 min-h-fit"
                   >
-                    <span className="text-foreground/70 font-mono text-[15px] sm:text-sm">
+                    <span className="text-foreground/70 font-mono text-[15px] sm:text-[16px]">
                       {value.number}
                     </span>
                     <h1 className="mt-1 sm:mt-2 font-light text-foreground text-[17px] sm:text-base md:text-lg">
                       {value.title}
                     </h1>
-                    <span className="mt-1 sm:mt-2 text-foreground/70 font-light leading-relaxed text-[15px] sm:text-xs md:text-sm">
+                    <span className="mt-1 sm:mt-2 text-foreground/70 font-light leading-relaxed text-[15px] sm:text-sm md:text-[18px]">
                       {value.description}
                     </span>
                   </motion.div>

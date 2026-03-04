@@ -63,18 +63,18 @@ function TimelineNode({
         <motion.div
           layoutId={`card-container-${index}`}
           onClick={() => onClick(item)}
-          className="group relative p-6 sm:p-8 md:p-10 bg-background/30 border border-border/50 rounded-2xl hover:border-foreground/20 cursor-pointer hover:bg-background/50 backdrop-blur-sm"
+          className="group relative p-3 sm:p-4 md:p-6 lg:p-8 bg-background/30 border border-border/50 rounded-lg sm:rounded-xl md:rounded-2xl hover:border-foreground/20 cursor-pointer hover:bg-background/50 backdrop-blur-sm"
           whileHover={{ scale: 1.02 }}
         >
-          <div className="flex items-start gap-3 sm:gap-6 flex-col sm:flex-row">
+          <div className="flex items-start gap-2 sm:gap-3 md:gap-4 flex-col sm:flex-row">
             <motion.div
               layoutId={`card-icon-${index}`}
-              className="p-3 rounded-xl bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-500 shrink-0"
+              className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-500 shrink-0 flex-shrink-0"
             >
-              <Icon />
+              <Icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </motion.div>
             <div className="flex-1">
-              <div className="text-sm text-left font-mono text-foreground/70 mb-2">
+              <div className="text-xs sm:text-xs md:text-sm text-left font-mono text-foreground/70 mb-1 sm:mb-2">
                 {item.year}
               </div>
               <AnimatePresence mode="wait">
@@ -84,7 +84,7 @@ function TimelineNode({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.25 }}
-                  className="text-xl text-left font-light text-foreground mb-3"
+                  className="text-sm sm:text-base md:text-lg text-left font-light text-foreground mb-1 sm:mb-2"
                 >
                   {item.title[lang]}
                 </motion.h3>
@@ -97,7 +97,7 @@ function TimelineNode({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.25 }}
-                  className="text-foreground/70 text-left font-light leading-relaxed"
+                  className="text-xs sm:text-xs md:text-sm text-foreground/70 text-left font-light leading-relaxed"
                 >
                   {item.desc[lang]}
                 </motion.p>
@@ -241,7 +241,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
     <section
       id="experience"
       ref={ref}
-      className="h-dvh snap-start flex flex-col justify-center overflow-auto transition-transform duration-500"
+      className="h-auto sm:h-dvh snap-start flex flex-col justify-start sm:justify-center overflow-auto transition-transform duration-500 pt-2 sm:pt-0 pb-4 sm:pb-0"
     >
       <div
         style={{
@@ -254,7 +254,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
             ? "none"
             : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
         }}
-        className="max-w-7xl xl:max-w-7x xl mx-auto px-4 sm:px-6"
+        className="max-w-7xl xl:max-w-7x xl mx-auto px-3 sm:px-4 md:px-6 mt-15 sm:mt-0"
       >
         <motion.div
           animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}
@@ -263,9 +263,9 @@ export function Journey({ isMenuOpen }: JourneyProps) {
             ease: [0.22, 1, 0.36, 1],
             delay: isMenuOpen ? 0 : 0.1,
           }}
-          className="min-h-screen flex flex-col justify-center py-20"
+          className="min-h-auto sm:min-h-screen flex flex-col justify-start sm:justify-center py-4 sm:py-8 md:py-12 lg:py-16"
         >
-          <div className="mx-auto text-center mb-12 sm:mb-16">
+          <div className="mx-auto text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12">
             <AnimatePresence mode="wait">
               <motion.div
                 key={lang}
@@ -274,10 +274,10 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-foreground/70 mb-6 block">
+                <span className="text-xs sm:text-xs md:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] text-foreground/70 mb-2 sm:mb-3 md:mb-4 block">
                   {lang === "en" ? "Timeline" : "Цаг хугацаа"}
                 </span>
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-light mt-6 tracking-tight mb-0 text-foreground">
+                <h2 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-light mt-2 sm:mt-3 md:mt-4 tracking-tight mb-0 text-foreground">
                   {lang === "en" ? "Our " : "Бидний "}
                   <span className="italic">
                     {lang === "en" ? "Experience" : "Туршлага"}
@@ -305,7 +305,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 />
               </div>
 
-              <div className="flex flex-col gap-6 sm:gap-10 md:gap-14">
+              <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-10">
                 {timeline.map((item, index) => (
                   <TimelineNode
                     key={index}
@@ -357,7 +357,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                     stiffness: 300,
                     damping: 30,
                   }}
-                  className="bg-background border border-border/50 rounded-2xl p-6 md:p-8 max-w-5xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative pointer-events-auto"
+                  className="bg-background border border-border/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 max-w-5xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative pointer-events-auto"
                 >
                   <button
                     onClick={() => setSelectedItem(null)}
@@ -366,18 +366,18 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                     <X className="w-5 h-5" />
                   </button>
 
-                  <div className="flex items-start gap-4 mb-6 pr-8">
+                  <div className="flex items-start gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 pr-6 sm:pr-8">
                     <motion.div
                       layoutId={`card-icon-${timeline.indexOf(selectedItem)}`}
-                      className="p-3 rounded-xl bg-muted shrink-0 text-foreground"
+                      className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-muted shrink-0 text-foreground flex-shrink-0"
                     >
-                      <selectedItem.icon className="w-6 h-6" />
+                      <selectedItem.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                     </motion.div>
                     <div>
-                      <div className="text-sm font-mono text-foreground/70 mb-1">
+                      <div className="text-xs sm:text-xs md:text-sm font-mono text-foreground/70 mb-0.5 sm:mb-1">
                         {selectedItem.year}
                       </div>
-                      <h3 className="text-2xl font-light text-foreground">
+                      <h3 className="text-base sm:text-lg md:text-2xl font-light text-foreground">
                         {selectedItem.title[lang]}
                       </h3>
                     </div>
