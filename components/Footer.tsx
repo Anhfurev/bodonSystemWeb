@@ -83,7 +83,7 @@ export function Footer({
             </div>
 
             <div className="flex items-start gap-2 sm:gap-3">
-              <div className="flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-muted/50 flex-shrink-0">
+              <div className="flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-muted/50">
                 <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4.5 md:w-4.5" />
               </div>
               <div className="flex flex-col gap-0.5 sm:gap-1">
@@ -99,7 +99,7 @@ export function Footer({
             </div>
 
             <div className="flex items-start gap-2 sm:gap-3">
-              <div className="flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-muted/50 flex-shrink-0">
+              <div className="flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-muted/50">
                 <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4.5 md:w-4.5" />
               </div>
               <div className="flex flex-col gap-0.5 sm:gap-1">

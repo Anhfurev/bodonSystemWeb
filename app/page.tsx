@@ -12,7 +12,7 @@ export default function Home() {
       <div>
         <Scene3D isMenuOpen={isMenuOpen} />
       </div>
-      <main className="main-content overflow-x-hidden justify-center h-full  max-w-screen snap-mandatory snap-y overflow-y-auto scroll-smooth">
+      <main className="main-content overflow-x-hidden justify-center h-full  max-w-screen md:snap-y md:snap-mandatory overflow-y-auto scroll-smooth">
         <ScrollStop isMenuOpen={isMenuOpen} />
       </main>
     </div>

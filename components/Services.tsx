@@ -50,7 +50,7 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
   return (
     <section
       id="services"
-      className="px-3 sm:px-4 md:px-6 snap-start z-10 h-dvh md:h-screen bg-transparent flex justify-center items-start sm:items-center pt-2 sm:pt-0 pb-4 sm:pb-0"
+      className="px-3 sm:px-4 md:px-6 snap-start z-10 h-auto sm:h-dvh md:h-screen bg-transparent flex justify-center items-start sm:items-center pt-2 sm:pt-0 pb-4 sm:pb-0"
       ref={ref}
     >
       <div
