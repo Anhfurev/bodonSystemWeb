@@ -75,12 +75,12 @@ export default function RootLayout({
               <div className="flex">
                 <AnimatedThemeToggler
                   isItDark={isItDark}
-                  className={`z-30 fixed ${isMobile ? "right-23 top-6.5" : "right-28 top-10 "}`}
+                  className={`z-50 fixed ${isMobile ? "right-23 top-6.5" : "right-28 top-10 "}`}
                   color="#000"
                 />
                 <Button
                   onClick={Changelanguage}
-                  className={`z-30 fixed ${isMobile ? "right-30 top-5" : "right-36 top-8.5 "} bg-foreground`}
+                  className={`z-50 fixed ${isMobile ? "right-30 top-5" : "right-36 top-8.5 "} bg-foreground`}
                 >
                   <Languages size={40} strokeWidth={1.75} />
                 </Button>

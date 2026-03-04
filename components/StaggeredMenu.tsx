@@ -704,6 +704,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
 
 .staggered-menu-header {
+  
   position: absolute;
   top: 0;
   left: 0;
@@ -714,6 +715,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   align-items: center;
   justify-content: space-between;
   background: transparent;
+  backdrop-filter: blur(12px);
   pointer-events: none;
   z-index: 20;
 }

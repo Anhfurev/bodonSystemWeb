@@ -65,7 +65,7 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
       className="px-3 sm:px-4 md:px-6 snap-start h-fit sm:h-screen flex flex-col justify-start sm:justify-center pt-2 sm:pt-0 pb-4 sm:pb-0"
     >
       <div
-        className="mx-auto w-full mt-10 sm:mt-0"
+        className="mx-auto w-full mt-17 sm:mt-0"
         style={{
           width: isMobile
             ? "100%"

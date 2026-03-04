@@ -243,7 +243,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
     <section
       id="experience"
       ref={ref}
-      className="h-auto sm:h-dvh snap-start flex flex-col justify-start sm:justify-center overflow-y-auto overflow-x-hidden transition-transform duration-500 pt-2 sm:pt-0 pb-4 sm:pb-0"
+      className="h-auto sm:h-dvh snap-start flex flex-col justify-start sm:justify-center overflow-x-hidden transition-transform duration-500 pt-2 sm:pt-0 pb-4 sm:pb-0"
     >
       <div
         style={{
@@ -256,7 +256,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
             ? "none"
             : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
         }}
-        className="max-w-7xl xl:max-w-7x xl mx-auto px-3 sm:px-4 md:px-6 mt-0 sm:mt-0 w-full"
+        className="max-w-7xl xl:max-w-7x xl mx-auto px-3 sm:px-4 md:px-6 mt-15 sm:mt-0 w-full"
       >
         <motion.div
           animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}
