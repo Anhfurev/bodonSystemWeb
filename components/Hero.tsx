@@ -10,15 +10,13 @@ import { useMenuMetrics } from "@/lib/utils";
 export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
   const { lang } = useDarkContext();
   const ref = useRef(null);
-   const { menuWidth, isMobile } = useMenuMetrics();
-
- 
+  const { menuWidth, isMobile } = useMenuMetrics();
 
   return (
     <section
       id="home"
       ref={ref}
-      className=" min-h-screen overflow-hidden flex flex-col justify-center items-center"
+      className="h-screen md:min-h-screen overflow-hidden flex flex-col justify-center items-center"
     >
       <div className="max-w-7xl xl:max-w-4xl my-auto mx-auto px-4 sm:px-6">
         <motion.div
@@ -171,23 +169,23 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
                 </AnimatePresence>
               </motion.div>
             </motion.div>{" "}
-         <motion.div
-  className="mt-20 sm:mt-40 flex justify-center w-full z-50"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ delay: 1.2, duration: 0.8 }}
->
-  <motion.div
-    animate={{ y: [0, 8, 0] }}
-    transition={{
-      duration: 1.5,
-      repeat: Infinity,
-      ease: "easeInOut",
-    }}
-  >
-    <ArrowDown className="h-5 w-5 text-foreground/70" />
-  </motion.div>
-</motion.div>
+            <motion.div
+              className="mt-20 sm:mt-40 flex justify-center w-full z-50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+            >
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <ArrowDown className="h-5 w-5 text-foreground/70" />
+              </motion.div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
