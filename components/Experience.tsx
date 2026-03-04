@@ -254,7 +254,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
             ? "none"
             : "width 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
         }}
-        className="max-w-7xl xl:max-w-7x xl mx-auto px-3 sm:px-4 md:px-6 mt-15 sm:mt-0"
+        className="max-w-7xl xl:max-w-7x xl mx-auto px-3 sm:px-4 md:px-6 mt-0 sm:mt-0"
       >
         <motion.div
           animate={{ x: isMobile ? 0 : isMenuOpen ? -menuWidth / 2 : 0 }}
