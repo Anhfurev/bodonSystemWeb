@@ -615,7 +615,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     key={it.label + idx}
                   >
                     <a
-                      className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
+                      className="sm-panel-item relative text-black font-semibold sm:text-[4rem] text-[3rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
                       href={it.link}
                       aria-label={it.ariaLabel}
                     >
@@ -641,7 +641,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
             {displaySocials && socialItems && socialItems.length > 0 && (
               <div
-                className="sm-socials mt-auto pt-8 flex flex-col gap-3"
+                className="sm-socials mt-10 sm:mt-auto pt-8 flex flex-col gap-3"
                 aria-label="Social links"
               >
                 <h3 className="sm-socials-title m-0 text-base font-medium text-(--sm-accent,#ff0000)">
