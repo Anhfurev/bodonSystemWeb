@@ -16,7 +16,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
     <section
       id="home"
       ref={ref}
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen h-dvh flex items-center justify-center overflow-hidden"
     >
       <div className="w-full max-w-7xl xl:max-w-4xl px-4 sm:px-6">
         <motion.div
@@ -154,7 +154,7 @@ export function Hero({ isMenuOpen }: { isMenuOpen: boolean }) {
 
       {/* Bottom Arrow */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
