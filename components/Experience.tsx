@@ -342,7 +342,7 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: isMobile ? 0.15 : 0.3 }}
-                className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm"
+                className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm pointer-events-auto"
                 onClick={() => setSelectedItem(null)}
               />
               <motion.div
@@ -373,7 +373,12 @@ export function Journey({ isMenuOpen }: JourneyProps) {
                           damping: 30,
                         }
                   }
-                  className="bg-background border border-border/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 max-w-5xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative pointer-events-auto"
+                  style={{
+                    touchAction: "auto",
+                    overflowY: "auto",
+                    overscrollBehavior: "contain",
+                  }}
+                  className="bg-background border border-border/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 max-w-5xl w-full max-h-[85vh] shadow-2xl relative pointer-events-auto"
                 >
                   <button
                     onClick={() => setSelectedItem(null)}
