@@ -33,10 +33,13 @@ export const menuItems = [
 ];
 
 export const socialItems = [
-  { label: "Gmail", link: "https:anhfurev@gmail.com" },
+  {
+    label: "Gmail",
+    link: "https://mail.google.com/mail/u/1/#inbox?compose=CllgCJqXPHhGJVVBSXJsLSQPgNhNdVMzmSJCRHVpGKWGNQLCnRDgjjSBjRdcWSTmwZxWJKQRhsB",
+  },
   { label: "GitHub", link: "https://github.com/anhfurev" },
   {
     label: "LinkedIn",
-    link: "https:linkedin.com/in/ankhfurev-munkhtsetseg-8854a2341",
+    link: "https://www.linkedin.com/in/ankhfurev-munkhtsetseg-8854a2341",
   },
 ];

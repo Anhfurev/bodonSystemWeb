@@ -118,7 +118,7 @@ export function Services({ isMenuOpen }: { isMenuOpen: boolean }) {
                   className="group relative p-3 sm:p-4 md:p-8 lg:p-12 bg-background/30 border border-border/50 rounded-xl sm:rounded-2xl hover:border-foreground/20 transition-all duration-500"
                 >
                   <div className="flex items-start gap-2 sm:gap-3 md:gap-4 lg:gap-6 flex-col sm:flex-row">
-                    <div className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-muted group-hover:bg-foreground group-hover:text-background transition-all duration-500 flex-shrink-0">
+                    <div className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-muted group-hover:bg-foreground group-hover:text-background transition-all duration-500 shrink-0">
                       <service.icon className="h-5 w-5 sm:h-6 sm:w-6" />
                     </div>
                     <div className="flex-1">

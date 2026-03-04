@@ -69,7 +69,7 @@ export function Footer({
         <div className="relative z-10 mx-auto max-w-6xl px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6">
           <div className="flex flex-col sm:flex-row sm:justify-between gap-3 sm:gap-4 md:gap-6">
             <div className="flex items-start gap-2 sm:gap-3">
-              <div className="flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-muted/50 flex-shrink-0">
+              <div className="flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-muted/50">
                 <Building2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4.5 md:w-4.5" />
               </div>
               <div className="flex flex-col gap-0.5 sm:gap-1">

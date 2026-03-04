@@ -126,7 +126,7 @@ export function TechStack({ isMenuOpen }: { isMenuOpen: boolean }) {
                   transition={{ duration: 0.5, delay: i * 0.05 }}
                   className="group flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl md:rounded-2xl bg-background/40 border border-border/40 hover:border-foreground/20 hover:bg-background/60 transition-all duration-300"
                 >
-                  <div className="text-lg sm:text-xl md:text-2xl text-foreground/70 group-hover:text-foreground transition-colors duration-300 flex-shrink-0">
+                  <div className="text-lg sm:text-xl md:text-2xl text-foreground/70 group-hover:text-foreground transition-colors duration-300 shrink-0">
                     {tech.node}
                   </div>
                   <span className="text-xs sm:text-xs md:text-sm font-medium text-foreground/70 group-hover:text-foreground transition-colors duration-300 line-clamp-1">
