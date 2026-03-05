@@ -89,7 +89,7 @@ export function Contact({ isMenuOpen }: { isMenuOpen: boolean }) {
                 }}
                 className=" flex flex-col justify-center items-center"
               >
-                <div className="lg:max-w-4xl max-w-3xl m-auto justify-center items-center">
+                <div className="lg:max-w-5xl max-w-4xl m-auto justify-center items-center">
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
