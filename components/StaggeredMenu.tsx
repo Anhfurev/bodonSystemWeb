@@ -704,8 +704,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   
   align-items: center;
   justify-content: space-between;
+  
   background: transparent;
-  backdrop-filter: blur(7px);
+  ${isMobile ? "backdrop-filter: blur(7px);" : ""}
   pointer-events: none;
   z-index: 20;
 }
